@@ -29,8 +29,7 @@ public class DocumentWeightPairTest {
         when(documentA.getTfIf("there")).thenReturn(0.0);
         when(documentB.getTfIf("there")).thenReturn(3.3);
 
-        assertThat(documentWeightPair.cosineSimilarity(), is(0.3111594833181642));
-
+        assertThat(documentWeightPair.cosineSimilarity(), is(0.20361474157394124)); // 1.3*1.5 + 2.3*0.0 + 0.0*3.3 / sqrt(sum(1.3^2,2.3^2,0.0^2) * sqrt(sum(1.5^2 + 0.00^2 + 3.3^2)
     }
 
 }

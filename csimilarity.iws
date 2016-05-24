@@ -61,35 +61,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Document.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/csimilarity/Document.java">
+      <file leaf-file-name="DocumentWeightPair.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/csimilarity/DocumentWeightPair.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="35" column="37" selection-start-line="35" selection-start-column="37" selection-end-line="35" selection-end-column="37" />
+              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1171#1172#0" expanded="true" />
-                <element signature="e#1209#1210#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DocumentWeight.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/csimilarity/DocumentWeight.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#565#566#0" expanded="true" />
-                <element signature="e#620#621#0" expanded="true" />
-                <element signature="e#654#655#0" expanded="true" />
-                <element signature="e#694#695#0" expanded="true" />
-                <element signature="e#731#732#0" expanded="true" />
-                <element signature="e#762#763#0" expanded="true" />
-                <element signature="e#1067#1068#0" expanded="true" />
-                <element signature="e#1109#1110#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -99,54 +77,53 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/csimilarity/DocumentWeights.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-              <folding>
-                <element signature="e#185#186#0" expanded="true" />
-                <element signature="e#239#240#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DocumentWeightPair.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/csimilarity/DocumentWeightPair.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="51" column="109" selection-start-line="51" selection-start-column="109" selection-end-line="51" selection-end-column="109" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DocumentWeightPairTest.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/csimilarity/DocumentWeightPairTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.66239315">
-              <caret line="31" column="82" selection-start-line="31" selection-start-column="82" selection-end-line="31" selection-end-column="82" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Documents.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/csimilarity/Documents.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DocumentWeightTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/csimilarity/DocumentWeightTest.java">
+      <file leaf-file-name="Graph.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/csimilarity/Graph.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.12820514">
+              <caret line="6" column="15" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GraphTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/csimilarity/GraphTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+              <caret line="18" column="41" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DocumentNodeTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/csimilarity/DocumentNodeTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="30" column="84" selection-start-line="30" selection-start-column="47" selection-end-line="30" selection-end-column="84" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DocumentNode.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/csimilarity/DocumentNode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="8" column="30" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -181,13 +158,18 @@
         <option value="$PROJECT_DIR$/src/main/java/csimilarity/DocumentWeightNode.java" />
         <option value="$PROJECT_DIR$/src/test/java/csimilarity/DocumentWeightNodeTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/csimilarity/Documents.java" />
-        <option value="$PROJECT_DIR$/src/main/java/csimilarity/DocumentNode.java" />
         <option value="$PROJECT_DIR$/src/main/java/csimilarity/Document.java" />
-        <option value="$PROJECT_DIR$/src/main/java/csimilarity/DocumentWeight.java" />
         <option value="$PROJECT_DIR$/src/main/java/csimilarity/DocumentPair.java" />
         <option value="$PROJECT_DIR$/src/main/java/csimilarity/DocumentWeights.java" />
+        <option value="$PROJECT_DIR$/src/main/java/csimilarity/DocumentWeight.java" />
         <option value="$PROJECT_DIR$/src/main/java/csimilarity/DocumentWeightPair.java" />
         <option value="$PROJECT_DIR$/src/test/java/csimilarity/DocumentWeightPairTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/csimilarity/DocumentGraph.java" />
+        <option value="$PROJECT_DIR$/src/main/java/csimilarity/DocumentNodeEdge.java" />
+        <option value="$PROJECT_DIR$/src/test/java/csimilarity/DocumentNodeTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/csimilarity/DocumentNode.java" />
+        <option value="$PROJECT_DIR$/src/test/java/csimilarity/GraphTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/csimilarity/Graph.java" />
       </list>
     </option>
   </component>
@@ -333,6 +315,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
+    <property name="extract.method.default.visibility" value="private" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -342,59 +325,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DocumentWeightPairTest">
-    <configuration default="false" name="DocumentsTest.shouldReturnTheInverseDoucmentFrequency" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="csimilarity.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="csimilarity" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="csimilarity" />
-      <option name="MAIN_CLASS_NAME" value="csimilarity.DocumentsTest" />
-      <option name="METHOD_NAME" value="shouldReturnTheInverseDoucmentFrequency" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="DocumentWeightTest.shouldPopulateDocumentWeight" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="csimilarity.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="csimilarity" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="csimilarity" />
-      <option name="MAIN_CLASS_NAME" value="csimilarity.DocumentWeightTest" />
-      <option name="METHOD_NAME" value="shouldPopulateDocumentWeight" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="JUnit.GraphTest.shouldReturnAGraphAfterSparsification">
     <configuration default="false" name="DocumentWeightTest.shouldPopulateTermFrequencyInverseTermFrequence" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" runner="idea">
         <pattern>
@@ -461,6 +392,58 @@
       <option name="MAIN_CLASS_NAME" value="csimilarity.DocumentWeightPairTest" />
       <option name="METHOD_NAME" value="shouldReturnTheWeightBetweenTwoDocumentWeightNodes" />
       <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="DocumentNodeTest.shouldReturnTheNodeRetainingOnlyTheSpecifiedNumberOfEdgesWhichHaveHigherWeight" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="csimilarity.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="csimilarity" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="csimilarity" />
+      <option name="MAIN_CLASS_NAME" value="csimilarity.DocumentNodeTest" />
+      <option name="METHOD_NAME" value="shouldReturnTheNodeRetainingOnlyTheSpecifiedNumberOfEdgesWhichHaveHigherWeight" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="GraphTest.shouldReturnAGraphAfterSparsification" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="csimilarity.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="csimilarity" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="csimilarity" />
+      <option name="MAIN_CLASS_NAME" value="csimilarity.GraphTest" />
+      <option name="METHOD_NAME" value="shouldReturnAGraphAfterSparsification" />
+      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -874,19 +857,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.DocumentsTest.shouldReturnTheInverseDoucmentFrequency" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.DocumentWeightTest.shouldPopulateDocumentWeight" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.DocumentWeightTest.shouldPopulateTermFrequencyInverseTermFrequence" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.DocumentWeightPairTest.shouldReturnTheWeightBetweenTwoDocumentWeightNodes" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.DocumentWeightPairTest" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.DocumentWeightTest.shouldPopulateTermFrequencyInverseTermFrequence" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.DocumentWeightPairTest.shouldReturnTheWeightBetweenTwoDocumentWeightNodes" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.DocumentWeightPairTest" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.DocumentNodeTest.shouldReturnTheNodeRetainingOnlyTheSpecifiedNumberOfEdgesWhichHaveHigherWeight" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.GraphTest.shouldReturnAGraphAfterSparsification" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.DocumentWeightPairTest" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.DocumentWeightPairTest.shouldReturnTheWeightBetweenTwoDocumentWeightNodes" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.DocumentWeightTest.shouldPopulateTermFrequencyInverseTermFrequence" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.DocumentWeightTest.shouldPopulateDocumentWeight" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.DocumentsTest.shouldReturnTheInverseDoucmentFrequency" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.GraphTest.shouldReturnAGraphAfterSparsification" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.DocumentNodeTest.shouldReturnTheNodeRetainingOnlyTheSpecifiedNumberOfEdgesWhichHaveHigherWeight" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.DocumentWeightPairTest" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.DocumentWeightPairTest.shouldReturnTheWeightBetweenTwoDocumentWeightNodes" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.DocumentWeightTest.shouldPopulateTermFrequencyInverseTermFrequence" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -907,44 +890,44 @@
       <workItem from="1464060368755" duration="7000" />
       <workItem from="1464060391994" duration="124000" />
       <workItem from="1464060527659" duration="51000" />
-      <workItem from="1464060606248" duration="8208000" />
+      <workItem from="1464060606248" duration="15057000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
+    <history-entry file="DocumentNodeTest_shouldReturnTheNodeRetainingOnlyTheSpecifiedNumberOfEdgesWhichHaveHigherWeight - 2016.05.24 at 13h 13m 50s.xml">
+      <configuration name="DocumentNodeTest.shouldReturnTheNodeRetainingOnlyTheSpecifiedNumberOfEdgesWhichHaveHigherWeight" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DocumentNodeTest_shouldReturnTheNodeRetainingOnlyTheSpecifiedNumberOfEdgesWhichHaveHigherWeight - 2016.05.24 at 13h 19m 46s.xml">
+      <configuration name="DocumentNodeTest.shouldReturnTheNodeRetainingOnlyTheSpecifiedNumberOfEdgesWhichHaveHigherWeight" configurationId="JUnit" />
+    </history-entry>
     <history-entry file="DocumentWeightPairTest - 2016.05.24 at 11h 14m 43s.xml">
       <configuration name="DocumentWeightPairTest" configurationId="JUnit" />
     </history-entry>
     <history-entry file="DocumentWeightPairTest - 2016.05.24 at 11h 15m 37s.xml">
       <configuration name="DocumentWeightPairTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="DocumentWeightPairTest_shouldReturnTheWeightBetweenTwoDocumentWeightNodes - 2016.05.24 at 10h 58m 28s.xml">
-      <configuration name="DocumentWeightPairTest.shouldReturnTheWeightBetweenTwoDocumentWeightNodes" configurationId="JUnit" />
+    <history-entry file="DocumentWeightPairTest - 2016.05.24 at 11h 55m 39s.xml">
+      <configuration name="DocumentWeightPairTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DocumentWeightPairTest - 2016.05.24 at 11h 55m 50s.xml">
+      <configuration name="DocumentWeightPairTest" configurationId="JUnit" />
     </history-entry>
     <history-entry file="DocumentWeightPairTest_shouldReturnTheWeightBetweenTwoDocumentWeightNodes - 2016.05.24 at 11h 12m 16s.xml">
       <configuration name="DocumentWeightPairTest.shouldReturnTheWeightBetweenTwoDocumentWeightNodes" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="DocumentWeightTest_shouldPopulateDocumentWeight - 2016.05.24 at 09h 52m 49s.xml">
-      <configuration name="DocumentWeightTest.shouldPopulateDocumentWeight" configurationId="JUnit" />
+    <history-entry file="GraphTest_shouldReturnAGraphAfterSparsification - 2016.05.24 at 13h 32m 33s.xml">
+      <configuration name="GraphTest.shouldReturnAGraphAfterSparsification" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="DocumentWeightTest_shouldPopulateDocumentWeight - 2016.05.24 at 09h 57m 58s.xml">
-      <configuration name="DocumentWeightTest.shouldPopulateDocumentWeight" configurationId="JUnit" />
+    <history-entry file="GraphTest_shouldReturnAGraphAfterSparsification - 2016.05.24 at 13h 33m 40s.xml">
+      <configuration name="GraphTest.shouldReturnAGraphAfterSparsification" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="DocumentWeightTest_shouldPopulateDocumentWeight - 2016.05.24 at 09h 58m 09s.xml">
-      <configuration name="DocumentWeightTest.shouldPopulateDocumentWeight" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="DocumentWeightTest_shouldPopulateTermFrequencyInverseTermFrequence - 2016.05.24 at 10h 20m 58s.xml">
-      <configuration name="DocumentWeightTest.shouldPopulateTermFrequencyInverseTermFrequence" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="DocumentWeightTest_shouldPopulateTermFrequencyInverseTermFrequence - 2016.05.24 at 10h 21m 18s.xml">
-      <configuration name="DocumentWeightTest.shouldPopulateTermFrequencyInverseTermFrequence" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="DocumentsTest_shouldReturnTheInverseDoucmentFrequency - 2016.05.24 at 09h 47m 23s.xml">
-      <configuration name="DocumentsTest.shouldReturnTheInverseDoucmentFrequency" configurationId="JUnit" />
+    <history-entry file="GraphTest_shouldReturnAGraphAfterSparsification - 2016.05.24 at 13h 40m 03s.xml">
+      <configuration name="GraphTest.shouldReturnAGraphAfterSparsification" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8390000" />
+    <option name="totallyTimeSpent" value="15239000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="822" extended-state="0" />
@@ -952,7 +935,7 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32681563" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31232876" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3109589" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1002,12 +985,12 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38219178" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46819338" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32681563" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31232876" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3109589" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.400838" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4410959" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4410959" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32739726" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32569975" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1104,16 +1087,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/csimilarity/DocumentTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="44" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/src.zip!/java/lang/Math.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1121,26 +1094,6 @@
           <folding>
             <element signature="e#11119#11120#0" expanded="false" />
             <element signature="e#11200#11201#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/csimilarity/DocumentsTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7236842">
-          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/csimilarity/DocumentWeightTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1157,13 +1110,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/csimilarity/DocumentWeights.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/csimilarity/DocumentWeight.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.31578946">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
           <folding>
-            <element signature="e#185#186#0" expanded="true" />
-            <element signature="e#239#240#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/csimilarity/DocumentNodeEdge.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.23684211">
+          <caret line="6" column="65" selection-start-line="6" selection-start-column="65" selection-end-line="6" selection-end-column="65" />
+          <folding>
+            <element signature="e#282#283#0" expanded="true" />
+            <element signature="e#315#316#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1171,43 +1134,95 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/csimilarity/Documents.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/csimilarity/DocumentWeight.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/csimilarity/DocumentWeights.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#565#566#0" expanded="true" />
-            <element signature="e#620#621#0" expanded="true" />
-            <element signature="e#654#655#0" expanded="true" />
-            <element signature="e#694#695#0" expanded="true" />
-            <element signature="e#731#732#0" expanded="true" />
-            <element signature="e#762#763#0" expanded="true" />
-            <element signature="e#1067#1068#0" expanded="true" />
-            <element signature="e#1109#1110#0" expanded="true" />
-          </folding>
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/csimilarity/DocumentWeightPair.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="51" column="109" selection-start-line="51" selection-start-column="109" selection-end-line="51" selection-end-column="109" />
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/csimilarity/DocumentWeightTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/csimilarity/DocumentsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/csimilarity/DocumentTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="44" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/csimilarity/DocumentWeightPairTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.66239315">
-          <caret line="31" column="82" selection-start-line="31" selection-start-column="82" selection-end-line="31" selection-end-column="82" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="57" selection-start-line="20" selection-start-column="57" selection-end-line="20" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/csimilarity/DocumentNodeTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="84" selection-start-line="30" selection-start-column="47" selection-end-line="30" selection-end-column="84" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/csimilarity/GraphTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="41" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/csimilarity/DocumentNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="30" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/csimilarity/Graph.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12820514">
+          <caret line="6" column="15" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

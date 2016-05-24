@@ -49,6 +49,6 @@ public class DocumentWeightPair {
         Double crossProductSum = crossProduct.stream().reduce(Double::sum).get();
         Double documentAWeightSquareSum = documentAWeightSquares.stream().reduce(Double::sum).get();
         Double documentBWeightSquareSum = documentBWeightSquares.stream().reduce(Double::sum).get();
-        return crossProductSum / (Math.sqrt(documentAWeightSquareSum) + Math.sqrt(documentBWeightSquareSum));
+        return crossProductSum / (Math.sqrt(documentAWeightSquareSum) * Math.sqrt(documentBWeightSquareSum));
     }
 }
