@@ -1,0 +1,6 @@
+build/
+out/
+*.ipr
+*.iml
+.gradle/
+gradle/
