@@ -2,14 +2,22 @@ package csimilarity;
 
 public class DocumentNodeEdge {
     private DocumentNode to;
-    private Double edgeWeigth;
+    private Double edgeWeight;
+    private Double distance;
 
-    public DocumentNodeEdge(DocumentNode to, Double edgeWeigth) {
+    public DocumentNodeEdge(DocumentNode to, Double edgeWeight) {
         this.to = to;
-        this.edgeWeigth = edgeWeigth;
+        this.edgeWeight = edgeWeight;
+        this.distance = 1 - edgeWeight;
     }
 
-    public Double getEdgeWeigth() {
-        return edgeWeigth;
+    public Double getEdgeWeight() {
+        return edgeWeight;
     }
+
+    public DocumentNode getTo() {
+        return to;
+    }
+
+
 }

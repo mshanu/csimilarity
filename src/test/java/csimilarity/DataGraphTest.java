@@ -11,7 +11,7 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class GraphTest {
+public class DataGraphTest {
 
     @Test
     public void shouldReturnAGraphAfterSparsification() throws Exception {
@@ -28,12 +28,14 @@ public class GraphTest {
 
         List<DocumentNode> documentNodes = Arrays.asList(aDocument, bDocument);
 
-        Graph graph = new Graph(documentNodes);
-        Graph sparsedGraph = graph.sparse(sparsificationRatio);
+        DataGraph dataGraph = new DataGraph(documentNodes);
+        DataGraph sparsedDataGraph = dataGraph.sparse(sparsificationRatio);
 
-        assertThat(sparsedGraph.documentNodes.size(), is(2));
-        assertThat(sparsedGraph.documentNodes, Matchers.containsInAnyOrder(prunedADocument, prunedBDocument));
+        assertThat(sparsedDataGraph.documentNodes.size(), is(2));
+        assertThat(sparsedDataGraph.documentNodes, Matchers.containsInAnyOrder(prunedADocument, prunedBDocument));
     }
+
+
 
 
 }

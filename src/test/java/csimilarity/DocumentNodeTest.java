@@ -27,7 +27,7 @@ public class DocumentNodeTest {
         List<DocumentNodeEdge> prunedDocumentNodeEdges = prunedDocumentNode.getEdges();
 
         assertThat(prunedDocumentNodeEdges, hasSize(2));
-        assertThat(prunedDocumentNodeEdges.stream().map(DocumentNodeEdge::getEdgeWeigth)
+        assertThat(prunedDocumentNodeEdges.stream().map(DocumentNodeEdge::getEdgeWeight)
                 .collect(Collectors.toList()), Matchers.containsInAnyOrder(1.4, 5.4));
 
     }

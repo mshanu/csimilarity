@@ -1,8 +1,11 @@
 package csimilarity;
 
+import bcentrality.Node;
+
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
+
 
 public class DocumentNode {
     private Document document;
@@ -14,11 +17,16 @@ public class DocumentNode {
     }
 
     public DocumentNode prune(Integer numberOfEdgesToRetain) {
-        List<DocumentNodeEdge> sortedEdges = edges.stream().sorted((o1, o2) -> o2.getEdgeWeigth().compareTo(o1.getEdgeWeigth())).collect(toList());
+        List<DocumentNodeEdge> sortedEdges = edges.stream().sorted((o1, o2) -> o2.getEdgeWeight().compareTo(o1.getEdgeWeight())).collect(toList());
         return new DocumentNode(document, sortedEdges.subList(0, numberOfEdgesToRetain));
     }
 
     public List<DocumentNodeEdge> getEdges() {
         return edges;
     }
+
+    public Node<String> getNode() {
+        return new Node<String>(document.getName());
+    }
+
 }

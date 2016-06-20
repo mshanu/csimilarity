@@ -1,9 +1,14 @@
 package csimilarity;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+@Getter
+@EqualsAndHashCode(exclude = "wordCountMap")
 public class Document {
     private String name;
     private Map<String, Integer> wordCountMap = new HashMap<>();
@@ -19,7 +24,7 @@ public class Document {
     }
 
     public Integer getWordCount(String word) {
-        return wordCountMap.getOrDefault(word,0);
+        return wordCountMap.getOrDefault(word, 0);
     }
 
     public Set<String> words() {
@@ -27,24 +32,9 @@ public class Document {
     }
 
 
-
     public Boolean contains(String word) {
         return wordCountMap.containsKey(word);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
 
-        Document document = (Document) o;
-
-        return name.equals(document.name);
-
-    }
-
-    @Override
-    public int hashCode() {
-        return name.hashCode();
-    }
 }
