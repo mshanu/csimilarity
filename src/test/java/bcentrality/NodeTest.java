@@ -2,11 +2,11 @@ package bcentrality;
 
 import org.junit.Test;
 
+import static java.util.Arrays.asList;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 public class NodeTest {
 
@@ -21,13 +21,13 @@ public class NodeTest {
     }
 
     @Test
-    public void shouldUpdateTheNodeDistanceForTheShortestEdgeNode() throws Exception {
-        Edges edges = mock(Edges.class);
-        Node destinationNode = mock(Node.class);
-        when(edges.getShortestDistantEdge()).thenReturn(new Edge(destinationNode,12.3));
+    public void shouldUpdateTheNodeDistanceForAllTheAdjacentNodes() throws Exception {
+        Node adjacentNode1 = mock(Node.class);
+        Node adjacentNode2 = mock(Node.class);
+        Node<Integer> node = new Node<>(1, 101.0, mock(Node.class), new Edges(asList(new Edge(adjacentNode1, 102.2), new Edge(adjacentNode2, 105.4))));
+        node.updateTheAdjacentNodeDistance();
+        verify(adjacentNode1).updateDistance(node, 203.2);
+        verify(adjacentNode2).updateDistance(node, 206.4);
 
-        Node<String> parentNode = new Node<>("a", 10.2, null, edges);
-        parentNode.updateTheLeastDistantEdgeNodeDistance();
-        verify(destinationNode).updateDistance(parentNode, 22.5);
     }
 }

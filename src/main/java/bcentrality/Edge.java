@@ -14,4 +14,7 @@ public class Edge {
     }
 
 
+    public void updateShortestDistance(Node parent, double distanceFromSource) {
+        toNode.updateDistance(parent, distanceFromSource + distance);
+    }
 }

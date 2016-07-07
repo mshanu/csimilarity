@@ -1,7 +1,5 @@
 package csimilarity;
 
-import bcentrality.Node;
-
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -25,8 +23,5 @@ public class DocumentNode {
         return edges;
     }
 
-    public Node<String> getNode() {
-        return new Node<String>(document.getName());
-    }
 
 }

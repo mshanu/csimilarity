@@ -5,25 +5,28 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
-@EqualsAndHashCode(exclude = {"shortestDistanceFromSource", "parentNode"})
+import java.util.ArrayList;
+
+@EqualsAndHashCode(exclude = {"shortestDistanceFromSource", "parentNode", "edges"})
 @Getter
 @AllArgsConstructor
 public class Node<T> {
     private T dataNode;
     private Double shortestDistanceFromSource;
     private Node parentNode;
-    private Edges edges;
+    private Edges edges = new Edges(new ArrayList<>());
 
     public Node(T dataNode) {
         this.dataNode = dataNode;
         this.shortestDistanceFromSource = Double.MAX_VALUE;
     }
 
+    public void createEdge(Node node, Double shortestDistanceFromSource) {
+        edges.add(new Edge(node, shortestDistanceFromSource));
+    }
 
-    public void updateTheLeastDistantEdgeNodeDistance() {
-        Edge shortestDistantEdge = edges.getShortestDistantEdge();
-        Node toNode = shortestDistantEdge.getToNode();
-        toNode.updateDistance(this, shortestDistanceFromSource + shortestDistantEdge.getDistance());
+    public void updateTheAdjacentNodeDistance() {
+        edges.updateShortestDistant(this, shortestDistanceFromSource);
     }
 
     public Node updateDistance(Node parentNode, Double distanceFromSource) {
@@ -32,5 +35,10 @@ public class Node<T> {
             this.parentNode = parentNode;
         }
         return this;
+    }
+
+
+    public Boolean hasInfiniteDistance() {
+        return this.shortestDistanceFromSource.equals(Double.MAX_VALUE);
     }
 }
