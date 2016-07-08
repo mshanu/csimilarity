@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Node<T> {
     private T dataNode;
     private Double shortestDistanceFromSource;
-    private Node parentNode;
+    private Nodes parentNodes = new Nodes(new ArrayList<>());
     private Edges edges = new Edges(new ArrayList<>());
 
     public Node(T dataNode) {
@@ -30,9 +30,9 @@ public class Node<T> {
     }
 
     public Node updateDistance(Node parentNode, Double distanceFromSource) {
-        if (distanceFromSource < shortestDistanceFromSource) {
+        if (distanceFromSource <= shortestDistanceFromSource) {
             this.shortestDistanceFromSource = distanceFromSource;
-            this.parentNode = parentNode;
+            parentNodes.add(parentNode);
         }
         return this;
     }

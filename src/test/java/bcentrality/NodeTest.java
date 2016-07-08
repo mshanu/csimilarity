@@ -15,7 +15,7 @@ public class NodeTest {
         Node nodeA = new Node<>("a");
         Node nodeB = new Node<>("b");
         Node updatedNode = nodeA.updateDistance(nodeB, 101.2);
-        assertThat(updatedNode.getParentNode(), is(nodeB));
+        assertThat(updatedNode.getParentNodes().getNode(nodeB), is(nodeB));
         assertThat(updatedNode.getShortestDistanceFromSource(), is(101.2));
 
     }
@@ -24,7 +24,7 @@ public class NodeTest {
     public void shouldUpdateTheNodeDistanceForAllTheAdjacentNodes() throws Exception {
         Node adjacentNode1 = mock(Node.class);
         Node adjacentNode2 = mock(Node.class);
-        Node<Integer> node = new Node<>(1, 101.0, mock(Node.class), new Edges(asList(new Edge(adjacentNode1, 102.2), new Edge(adjacentNode2, 105.4))));
+        Node<Integer> node = new Node<>(1, 101.0, mock(Nodes.class), new Edges(asList(new Edge(adjacentNode1, 102.2), new Edge(adjacentNode2, 105.4))));
         node.updateTheAdjacentNodeDistance();
         verify(adjacentNode1).updateDistance(node, 203.2);
         verify(adjacentNode2).updateDistance(node, 206.4);

@@ -12,4 +12,8 @@ public class Nodes {
         return nodes.stream().filter(node1 -> node1.equals(node)).findAny().get();
     }
 
+    public void add(Node node) {
+        nodes.add(node);
+    }
+
 }
