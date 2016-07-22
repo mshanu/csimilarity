@@ -1,6 +1,7 @@
 package csimilarity;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -34,7 +35,7 @@ public class DocumentWeightPair {
     }
 
     public Double cosineSimilarity() {
-        Set<String> words = documentA.words();
+        Set<String> words = new HashSet<>(documentA.words());
         words.addAll(documentB.words());
         List<Double> documentAWeightSquares = new ArrayList<>();
         List<Double> documentBWeightSquares = new ArrayList<>();
@@ -50,5 +51,10 @@ public class DocumentWeightPair {
         Double documentAWeightSquareSum = documentAWeightSquares.stream().reduce(Double::sum).get();
         Double documentBWeightSquareSum = documentBWeightSquares.stream().reduce(Double::sum).get();
         return crossProductSum / (Math.sqrt(documentAWeightSquareSum) * Math.sqrt(documentBWeightSquareSum));
+    }
+
+    @Override
+    public String toString() {
+        return "From:" + documentA.getDocument().getName() + " To: " + documentB.getDocument().getName() + " cosine:" + cosineSimilarity();
     }
 }

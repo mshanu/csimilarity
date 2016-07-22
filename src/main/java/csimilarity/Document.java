@@ -2,7 +2,11 @@ package csimilarity;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import org.apache.commons.io.IOUtils;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -36,5 +40,12 @@ public class Document {
         return wordCountMap.containsKey(word);
     }
 
+    public static Document createFrom(Path path) {
+        try {
+            return new Document(path.toString(), IOUtils.toString(Files.newInputStream(path)));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

@@ -1,9 +1,12 @@
 package csimilarity;
 
+import lombok.Getter;
+
 import java.util.List;
 
 public class Documents {
-    List<Document> documentList;
+    @Getter
+    private List<Document> documentList;
 
     public Documents(List<Document> documentList) {
         this.documentList = documentList;

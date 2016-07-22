@@ -23,5 +23,4 @@ public class DocumentNode {
         return edges;
     }
 
-
 }
