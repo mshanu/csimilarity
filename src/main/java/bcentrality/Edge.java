@@ -7,14 +7,14 @@ import lombok.Getter;
 @Getter
 public class Edge {
     private Node toNode;
-    private Double distance;
+    private Double weight;
 
     public Integer compareTheDistance(Edge edge) {
-        return distance.compareTo(edge.distance);
+        return weight.compareTo(edge.weight);
     }
 
 
     public void updateShortestDistance(Node parent, double distanceFromSource) {
-        toNode.updateDistance(parent, distanceFromSource + distance);
+        toNode.updateDistance(parent, distanceFromSource + weight);
     }
 }

@@ -1,10 +1,13 @@
 package csimilarity;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@Getter
 public class DocumentWeightPair {
     private DocumentWeight documentA;
     private DocumentWeight documentB;
@@ -35,12 +38,12 @@ public class DocumentWeightPair {
     }
 
     public Double cosineSimilarity() {
-        Set<String> words = new HashSet<>(documentA.words());
-        words.addAll(documentB.words());
+        Set<String> allWords = new HashSet<>(documentA.words());
+        allWords.addAll(documentB.words());
         List<Double> documentAWeightSquares = new ArrayList<>();
         List<Double> documentBWeightSquares = new ArrayList<>();
         List<Double> crossProduct = new ArrayList<>();
-        words.stream().forEach(word -> {
+        allWords.stream().forEach(word -> {
             Double docAWeight = documentA.getTfIf(word);
             Double docBWeight = documentB.getTfIf(word);
             crossProduct.add(docAWeight * docBWeight);
@@ -57,4 +60,13 @@ public class DocumentWeightPair {
     public String toString() {
         return "From:" + documentA.getDocument().getName() + " To: " + documentB.getDocument().getName() + " cosine:" + cosineSimilarity();
     }
+
+    public Document getFromDocument() {
+        return documentA.getDocument();
+    }
+
+    public Document getToDocument() {
+        return documentB.getDocument();
+    }
+
 }
