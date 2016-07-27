@@ -2,6 +2,8 @@ package bcentrality;
 
 import org.junit.Test;
 
+import java.util.HashSet;
+
 import static java.util.Arrays.asList;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -35,13 +37,13 @@ public class NodeTest {
 
         Node node4 = new Node(4, null, new Nodes(), null, null);
 
-        Nodes parentNodesToNode2 = new Nodes(asList(node4));
-        Nodes parentNodesToNode3 = new Nodes(asList(node4));
+        Nodes parentNodesToNode2 = new Nodes(new HashSet<>(asList(node4)));
+        Nodes parentNodesToNode3 = new Nodes(new HashSet<>(asList(node4)));
 
         Node<Integer> node2 = new Node(2, null, parentNodesToNode2, null, null);
         Node<Integer> node3 = new Node(3, null, parentNodesToNode3, null, null);
 
-        Nodes parentToNode1 = new Nodes(asList(node2, node3));
+        Nodes parentToNode1 = new Nodes(new HashSet<>(asList(node2, node3)));
         Node<Integer> node1 = new Node<>(1, null, parentToNode1, null, 0.0);
         assertThat(node1.getNumberOfShortestDistancePaths(), is(2));
 

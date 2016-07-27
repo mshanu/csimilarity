@@ -18,10 +18,17 @@ public class Edges {
 
     public Edges prune(Integer numberOfEdgesToRetain) {
         edges.sort(Edge::compareTheDistance);
-        return new Edges(edges.subList(0, numberOfEdgesToRetain));
+        if(numberOfEdgesToRetain < edges.size()){
+            return new Edges(edges.subList(0, numberOfEdgesToRetain));
+        }
+        return this;
     }
 
     public void add(Edge edge) {
         edges.add(edge);
+    }
+
+    public Boolean hasNode(Node to) {
+        return edges.stream().filter(edge -> edge.getToNode().equals(to)).findAny().isPresent();
     }
 }

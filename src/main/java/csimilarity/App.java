@@ -22,10 +22,10 @@ public class App {
         GraphBuilder<Document> documentGraphBuilder = new GraphBuilder<>();
         pairs.stream().forEach(pair -> documentGraphBuilder.addEdge(pair.getFromDocument(), pair.getToDocument(), 1-pair.cosineSimilarity()));
         Graph graph = documentGraphBuilder.build();
-        Graph sparsedGraph = graph.sparse(0.3);
+        Graph sparsedGraph = graph.sparse(0.1);
+        sparsedGraph.calculateCentralityValue();
 
-
-        System.out.println(sparsedGraph);
+        System.out.println(sparsedGraph.getNodes().stream().filter(node -> node.getCentralityValue() != 1.0).count());
     }
 
     private static Documents getDocuments() {

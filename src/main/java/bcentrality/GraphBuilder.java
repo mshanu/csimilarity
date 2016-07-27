@@ -9,10 +9,12 @@ public class GraphBuilder<T> {
 
     public void addEdge(T from, T to, Double weight) {
         Node fromNode = nodeMap.getOrDefault(from, new Node(from));
-        Node toNode = nodeMap.getOrDefault(from, new Node(to));
-        fromNode.createEdge(toNode, weight);
-        nodeMap.put(from, fromNode);
-        nodeMap.put(to, toNode);
+        Node toNode = nodeMap.getOrDefault(to, new Node(to));
+        if (!toNode.hasEdge(fromNode)) {
+            fromNode.createEdge(toNode, weight);
+            nodeMap.put(from, fromNode);
+            nodeMap.put(to, toNode);
+        }
     }
 
     public Graph build() {

@@ -3,16 +3,16 @@ package bcentrality;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @AllArgsConstructor
 @Getter
 public class Nodes {
-    private List<Node> nodes;
+    private Set<Node> nodes;
 
     public Nodes() {
-        nodes = new ArrayList<>();
+        nodes = new HashSet<>();
     }
 
     public Node getNode(Node node) {

@@ -2,15 +2,14 @@ package bcentrality;
 
 import lombok.Getter;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Graph {
+    @Getter
     private List<Node> nodes;
     @Getter
-    private List<Node> shortestDistanceCalculatedNodes;
+    private HashSet<Node> shortestDistanceCalculatedNodes;
 
     public Graph(List<Node> nodes) {
         this.nodes = nodes;
@@ -18,10 +17,20 @@ public class Graph {
 
     public Nodes getShortestDistanceForAllNodesFrom(Node node) {
         this.nodes.stream().forEach(Node::initShortDistanceCalculation);
-        shortestDistanceCalculatedNodes = new ArrayList<>();
-        node.updateDistance(null, 0.0);
-        dijstraksTraversal(nodes);
+        shortestDistanceCalculatedNodes = new HashSet<>();
+        node.makeStartingNode();
+        dijstraksTraversal(new ArrayList<>(nodes));
         return new Nodes(shortestDistanceCalculatedNodes);
+    }
+
+    public void calculateCentralityValue() {
+        nodes.stream().forEach(node -> {
+            Set<Node> nodesWithShortestPaths = getShortestDistanceForAllNodesFrom(node).getNodes();
+            nodesWithShortestPaths.forEach(node1 -> {
+                Integer totalShortestPathToSource = node1.getNumberOfShortestDistancePaths();
+                node1.updateCentrality(totalShortestPathToSource);
+            });
+        });
     }
 
     private void dijstraksTraversal(List<Node> nodes) {

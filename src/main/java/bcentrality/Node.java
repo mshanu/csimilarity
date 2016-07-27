@@ -4,9 +4,9 @@ package bcentrality;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NonNull;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.stream.Collectors;
 
 @EqualsAndHashCode(exclude = {"shortestDistanceFromSource", "parentNode", "edges"})
@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class Node<T> {
     private T dataNode;
     private Double shortestDistanceFromSource;
-    private Nodes parentNodes = new Nodes(new ArrayList<>());
+    private Nodes parentNodes = new Nodes(new HashSet<>());
     private Edges edges = new Edges(new ArrayList<>());
     private Double centralityValue = 0.0;
 
@@ -59,11 +59,24 @@ public class Node<T> {
 
     //Optimize here
     public void updateCentrality(Integer totalSumOfShortestPath) {
-        this.centralityValue = this.centralityValue + getNumberOfShortestDistancePaths() / totalSumOfShortestPath.doubleValue();
+        if (parentNodes.getNodes().isEmpty()) {
+            this.centralityValue = 1/totalSumOfShortestPath.doubleValue();
+        }
+        else {
+            this.centralityValue = this.centralityValue + getNumberOfShortestDistancePaths() / totalSumOfShortestPath.doubleValue();
+            this.parentNodes.getNodes().forEach(parentNode -> parentNode.updateCentrality(totalSumOfShortestPath));
+        }
     }
 
     public Boolean hasInfiniteDistance() {
         return this.shortestDistanceFromSource.equals(Double.MAX_VALUE);
     }
 
+    public void makeStartingNode() {
+        this.shortestDistanceFromSource = 0.0;
+    }
+
+    public Boolean hasEdge(Node to) {
+        return edges.hasNode(to);
+    }
 }
