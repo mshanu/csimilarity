@@ -51,8 +51,9 @@ public class NodeTest {
 
     @Test
     public void shouldCalculateTheCentralityValueIfGivenTheTotalPath() {
-        Node<Integer> spiedNode = spy(new Node<>(1));
+        Node<Integer> spiedNode = spy(new Node<>(1, null, new Nodes(new HashSet<Node>(asList(mock(Node.class)))), null, 0.0));
         when(spiedNode.getNumberOfShortestDistancePaths()).thenReturn(4);
+
         spiedNode.updateCentrality(5);
         assertThat(spiedNode.getCentralityValue(), is(0.8));
     }

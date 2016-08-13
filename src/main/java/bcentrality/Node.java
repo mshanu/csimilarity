@@ -79,4 +79,18 @@ public class Node<T> {
     public Boolean hasEdge(Node to) {
         return edges.hasNode(to);
     }
+
+    @Override
+    public String toString() {
+        if (edges.isEmpty()) {
+            return "";
+        }
+        String template = "\"%s\" -> \"%s\" [label =\"%s\"];";
+        return edges.getEdges().stream().map(edge -> String.format(template, getNameAndCentrality(), edge.getToNode().getNameAndCentrality(), edge.getWeight())).reduce(String::concat).get();
+
+    }
+
+     String getNameAndCentrality() {
+        return dataNode.toString() + " " + centralityValue;
+    }
 }

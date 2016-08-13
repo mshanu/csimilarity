@@ -51,4 +51,16 @@ public class Graph {
         return new Graph(nodes.stream().map(node -> node.prune(numberOfEdgesToRetain)).collect(Collectors.toList()));
     }
 
+    public void createCluster() {
+        calculateCentralityValue();
+        Double meanCentrality = nodes.stream().collect(Collectors.averagingDouble(Node::getCentralityValue));
+        Double sqrt = Math.sqrt(nodes.stream().collect(Collectors.summingDouble(node -> (node.getCentralityValue() - meanCentrality) * (node.getCentralityValue() - meanCentrality))));
+        Double standardDeviation = sqrt / nodes.size();
+        System.out.println(meanCentrality+standardDeviation);
+    }
+
+    @Override
+    public String toString() {
+        return this.nodes.stream().map(Node::toString).reduce(String::concat).get();
+    }
 }

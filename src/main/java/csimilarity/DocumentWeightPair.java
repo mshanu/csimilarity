@@ -1,5 +1,6 @@
 package csimilarity;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 @Getter
+@EqualsAndHashCode
 public class DocumentWeightPair {
     private DocumentWeight documentA;
     private DocumentWeight documentB;

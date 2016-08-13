@@ -31,4 +31,8 @@ public class Edges {
     public Boolean hasNode(Node to) {
         return edges.stream().filter(edge -> edge.getToNode().equals(to)).findAny().isPresent();
     }
+
+    public boolean isEmpty() {
+        return edges.isEmpty();
+    }
 }

@@ -1,34 +1,35 @@
 package csimilarity;
 
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import org.apache.commons.io.IOUtils;
+import org.apache.lucene.analysis.Tokenizer;
+import org.apache.lucene.analysis.core.StopAnalyzer;
+import org.apache.lucene.analysis.core.StopFilter;
+import org.apache.lucene.analysis.standard.StandardFilter;
+import org.apache.lucene.analysis.standard.StandardTokenizer;
+import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
+import org.apache.lucene.analysis.util.CharArraySet;
+import org.tartarus.snowball.ext.PorterStemmer;
 
 import java.io.IOException;
+import java.io.StringReader;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Getter
 @EqualsAndHashCode(exclude = "wordCountMap")
+@AllArgsConstructor
 public class Document {
     private String name;
-    private Map<String, Integer> wordCountMap = new HashMap<>();
-
-    public Document(String name, String text) {
-        this.name = name;
-        String[] eachWord = text.split("\\s+");
-        for (String word : eachWord) {
-            String trimmedWord = word.replaceAll("[^\\w]", "").toLowerCase();
-            Integer wordCount = this.wordCountMap.getOrDefault(trimmedWord, 0);
-            wordCountMap.put(trimmedWord, ++wordCount);
-        }
-    }
+    private Map<String, Long> wordCountMap = new HashMap<>();
 
     public Integer getWordCount(String word) {
-        return wordCountMap.getOrDefault(word, 0);
+        return wordCountMap.getOrDefault(word, 0l).intValue();
     }
 
     public Set<String> words() {
@@ -42,10 +43,42 @@ public class Document {
 
     public static Document createFrom(Path path) {
         try {
-            return new Document(path.toString(), IOUtils.toString(Files.newInputStream(path)));
+            List<String> words = extractWords(path);
+            Map<String, Long> collect = words.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+            return new Document(path.toString(), collect);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
+    private static List<String> extractWords(Path path) throws IOException {
+        List<String> words = new LinkedList<String>();
+//Read the File and store the content in a single String
+        String fileContent = new
+                String(Files.readAllBytes(path),
+                StandardCharsets.UTF_8);
+//Tokenize The content
+        Tokenizer tokenizer = new StandardTokenizer();
+        tokenizer.setReader(new StringReader(fileContent.toLowerCase()));
+        StandardFilter standardFilter = new StandardFilter(tokenizer);
+        CharArraySet stopSet = CharArraySet.copy(StopAnalyzer.ENGLISH_STOP_WORDS_SET);
+        StopFilter stopFilter = new StopFilter(standardFilter,
+                stopSet);
+        CharTermAttribute charTermAttribute
+                = tokenizer.addAttribute(CharTermAttribute.class);
+        stopFilter.reset();
+        PorterStemmer stemmer = new PorterStemmer();
+        while (stopFilter.incrementToken()) {
+            String token = charTermAttribute.toString();
+            stemmer.setCurrent(token);
+            stemmer.stem();
+            words.add(stemmer.getCurrent());
+        }
+        return words;
+    }
+
+    @Override
+    public String toString() {
+        return name.replace("/Users/shanu/Downloads/TestDocuments/", "");
+    }
 }
