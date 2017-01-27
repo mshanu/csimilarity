@@ -8,8 +8,7 @@ import java.util.stream.Collectors;
 public class Graph {
     @Getter
     private List<Node> nodes;
-    @Getter
-    private HashSet<Node> shortestDistanceCalculatedNodes;
+    
 
     public Graph(List<Node> nodes) {
         this.nodes = nodes;
@@ -17,10 +16,8 @@ public class Graph {
 
     public Nodes getShortestDistanceForAllNodesFrom(Node node) {
         this.nodes.stream().forEach(Node::initShortDistanceCalculation);
-        shortestDistanceCalculatedNodes = new HashSet<>();
         node.makeStartingNode();
-        dijstraksTraversal(new ArrayList<>(nodes));
-        return new Nodes(shortestDistanceCalculatedNodes);
+        return new Nodes(dijstraksTraversal(new ArrayList<>(nodes),new HashSet<>()));
     }
 
     public void calculateCentralityValue() {
@@ -33,15 +30,15 @@ public class Graph {
         });
     }
 
-    private void dijstraksTraversal(List<Node> nodes) {
+    private HashSet<Node> dijstraksTraversal(List<Node> nodes, HashSet<Node> shortestDistanceCalculatedNodes) {
         if (nodes.isEmpty()) {
-            return;
+            return shortestDistanceCalculatedNodes;
         }
         Node leastDistantNode = nodes.stream().min(Comparator.comparing(Node::getShortestDistanceFromSource)).get();
         nodes.remove(leastDistantNode);
         leastDistantNode.updateTheAdjacentNodeDistance();
         shortestDistanceCalculatedNodes.add(leastDistantNode);
-        dijstraksTraversal(nodes);
+        return dijstraksTraversal(nodes,shortestDistanceCalculatedNodes);
 
     }
 
