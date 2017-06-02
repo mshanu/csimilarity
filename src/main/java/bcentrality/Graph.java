@@ -2,7 +2,10 @@ package bcentrality;
 
 import lombok.Getter;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Stack;
 import java.util.stream.Collectors;
 
 public class Graph {
@@ -14,18 +17,21 @@ public class Graph {
         this.nodes = nodes;
     }
 
-    public Nodes getShortestDistanceForAllNodesFrom(Node node) {
+    public Stack<Node> getShortestDistanceForAllNodesFrom(Node node) {
         this.nodes.stream().forEach(Node::initShortDistanceCalculation);
         node.makeStartingNode();
-        return new Nodes(dijstraksTraversal(new ArrayList<>(nodes), new HashSet<>()));
+        Stack<Node> nodes = dijstraksTraversal(new ArrayList<>(this.nodes), new Stack<>());
+        return nodes;
     }
 
     public Graph calculateCentralityValue() {
-        nodes.stream().forEach(node -> {
-            Set<Node> nodesWithShortestPaths = getShortestDistanceForAllNodesFrom(node).getNodes();
+        nodes.stream().forEach(sourceNode -> {
+            Stack<Node> nodesWithShortestPaths = getShortestDistanceForAllNodesFrom(sourceNode);
             nodesWithShortestPaths.forEach(node1 -> {
-                Integer totalShortestPathToSource = node1.getNumberOfShortestPathFromSource();
-                node1.updatePairDependencies(totalShortestPathToSource);
+                node1.updatePairDependencies();
+                if (!node1.equals(sourceNode)) {
+                    node1.addCentrality();
+                }
             });
         });
         return new Graph(nodes);
@@ -37,16 +43,15 @@ public class Graph {
     nodes.stream().min(Comparator.comparing(Node::getShortestDistanceFromSource)).get()
     going with priority que next.
      */
-    private HashSet<Node> dijstraksTraversal(List<Node> nodes, HashSet<Node> shortestDistanceCalculatedNodes) {
+    private Stack<Node> dijstraksTraversal(List<Node> nodes, Stack<Node> shortestDistanceCalculatedNodes) {
         if (nodes.isEmpty()) {
             return shortestDistanceCalculatedNodes;
         }
         Node leastDistantNode = nodes.stream().min(Comparator.comparing(Node::getShortestDistanceFromSource)).get();
         nodes.remove(leastDistantNode);
         leastDistantNode.updateTheAdjacentNodeDistance();
-        shortestDistanceCalculatedNodes.add(leastDistantNode);
+        shortestDistanceCalculatedNodes.push(leastDistantNode);
         return dijstraksTraversal(nodes, shortestDistanceCalculatedNodes);
-
     }
 
     public Graph sparse(Double value) {

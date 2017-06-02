@@ -24,8 +24,6 @@ public class App {
         Graph graph = documentGraphBuilder.build();
         Graph sparsedGraph = graph.sparse(0.2);
         System.out.println(sparsedGraph.calculateCentralityValue());
-
-
     }
 
     private static Documents getDocuments() {

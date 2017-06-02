@@ -23,7 +23,6 @@ public class Node<T> {
     private Edges edges = new Edges(new ArrayList<>());
     private Double centralityValue = 0.0;
     private Double pairDependency = 0.0;
-    private Boolean isVisited = false;
 
     public Node(T dataNode) {
         this.dataNode = dataNode;
@@ -33,7 +32,7 @@ public class Node<T> {
     public void initShortDistanceCalculation() {
         this.predecessors = new Nodes();
         this.shortestDistanceFromSource = Double.MAX_VALUE;
-        this.isVisited = false;
+        this.pairDependency = 0.0;
     }
 
     public void createEdge(Node node, Double weight) {
@@ -65,19 +64,17 @@ public class Node<T> {
 
 
     //Optimize here
-    public void updatePairDependencies(Integer totalSumOfShortestPath) {
-        if (predecessors.getNodes().isEmpty()) {
-            this.centralityValue = 1 / totalSumOfShortestPath.doubleValue();
-        } else {
-            this.centralityValue = this.centralityValue + numberOfShortestPathFromSource / totalSumOfShortestPath.doubleValue();
-            this.predecessors.getNodes().forEach(parentNode -> parentNode.updatePairDependencies(totalSumOfShortestPath));
-        }
+    public void updatePairDependencies() {
+        this.predecessors.getNodes().stream().forEach(node -> node.updatePairDependencies(this));
+    }
+
+    public void addCentrality() {
+        this.centralityValue += this.pairDependency;
     }
 
     public void makeStartingNode() {
         this.shortestDistanceFromSource = 0.0;
         this.numberOfShortestPathFromSource = 1;
-        this.isVisited = true;
     }
 
     public Boolean hasEdge(Node to) {
@@ -100,18 +97,13 @@ public class Node<T> {
 
 
     public Node<T> removeEdgesWithHighCentralityValue(Double meanPlusStandardDeviation) {
-        return new Node<>(dataNode, shortestDistanceFromSource, 1, predecessors, edges.pruneWithCentralityValue(meanPlusStandardDeviation), centralityValue, 1.5, false);
+        return new Node<>(dataNode, shortestDistanceFromSource, 1, predecessors, edges.pruneWithCentralityValue(meanPlusStandardDeviation), centralityValue, 1.5);
     }
 
     public Boolean hasHigherCentralityValue(Double centralityValue) {
         return this.centralityValue > centralityValue;
     }
 
-
-    public Node<T> visited() {
-        this.isVisited = true;
-        return this;
-    }
 
     public Double updatePairDependencies(Node<T> successorNode) {
         this.pairDependency = this.pairDependency + ((numberOfShortestPathFromSource.doubleValue() / successorNode.getNumberOfShortestPathFromSource().doubleValue())
