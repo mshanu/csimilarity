@@ -4,20 +4,26 @@ package bcentrality;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.stream.Collectors;
 
-@EqualsAndHashCode(exclude = {"shortestDistanceFromSource", "parentNode", "edges"})
+@EqualsAndHashCode(of = "dataNode")
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class Node<T> {
     private T dataNode;
     private Double shortestDistanceFromSource;
-    private Nodes parentNodes = new Nodes(new HashSet<>());
+    private Integer numberOfShortestPathFromSource = 0;
+    private Nodes predecessors = new Nodes(new HashSet<>());
     private Edges edges = new Edges(new ArrayList<>());
     private Double centralityValue = 0.0;
+    private Double pairDependency = 0.0;
+    private Boolean isVisited = false;
 
     public Node(T dataNode) {
         this.dataNode = dataNode;
@@ -25,8 +31,9 @@ public class Node<T> {
     }
 
     public void initShortDistanceCalculation() {
-        this.parentNodes = new Nodes();
+        this.predecessors = new Nodes();
         this.shortestDistanceFromSource = Double.MAX_VALUE;
+        this.isVisited = false;
     }
 
     public void createEdge(Node node, Double weight) {
@@ -37,10 +44,16 @@ public class Node<T> {
         edges.updateShortestDistant(this, shortestDistanceFromSource);
     }
 
-    public Node updateDistance(Node parentNode, Double distanceFromSource) {
-        if (distanceFromSource <= shortestDistanceFromSource) {
+    public Node updateDistance(Node predecessorNode, Double distanceFromSource) {
+        if (new BigDecimal(distanceFromSource, MathContext.DECIMAL32).equals(new BigDecimal(shortestDistanceFromSource, MathContext.DECIMAL32))) {
+            predecessors.add(predecessorNode);
+            numberOfShortestPathFromSource += predecessorNode.getNumberOfShortestPathFromSource();
+        }
+        if (distanceFromSource < shortestDistanceFromSource) {
             this.shortestDistanceFromSource = distanceFromSource;
-            parentNodes.add(parentNode);
+            predecessors = new Nodes();
+            predecessors.add(predecessorNode);
+            numberOfShortestPathFromSource = predecessorNode.getNumberOfShortestPathFromSource();
         }
         return this;
     }
@@ -50,30 +63,21 @@ public class Node<T> {
         return this;
     }
 
-    public Integer getNumberOfShortestDistancePaths() {
-        if (parentNodes.getNodes().isEmpty()) {
-            return 1;
-        }
-        return parentNodes.getNodes().stream().collect(Collectors.summingInt(Node::getNumberOfShortestDistancePaths));
-    }
 
     //Optimize here
-    public void updateCentrality(Integer totalSumOfShortestPath) {
-        if (parentNodes.getNodes().isEmpty()) {
-            this.centralityValue = 1/totalSumOfShortestPath.doubleValue();
+    public void updatePairDependencies(Integer totalSumOfShortestPath) {
+        if (predecessors.getNodes().isEmpty()) {
+            this.centralityValue = 1 / totalSumOfShortestPath.doubleValue();
+        } else {
+            this.centralityValue = this.centralityValue + numberOfShortestPathFromSource / totalSumOfShortestPath.doubleValue();
+            this.predecessors.getNodes().forEach(parentNode -> parentNode.updatePairDependencies(totalSumOfShortestPath));
         }
-        else {
-            this.centralityValue = this.centralityValue + getNumberOfShortestDistancePaths() / totalSumOfShortestPath.doubleValue();
-            this.parentNodes.getNodes().forEach(parentNode -> parentNode.updateCentrality(totalSumOfShortestPath));
-        }
-    }
-
-    public Boolean hasInfiniteDistance() {
-        return this.shortestDistanceFromSource.equals(Double.MAX_VALUE);
     }
 
     public void makeStartingNode() {
         this.shortestDistanceFromSource = 0.0;
+        this.numberOfShortestPathFromSource = 1;
+        this.isVisited = true;
     }
 
     public Boolean hasEdge(Node to) {
@@ -90,7 +94,28 @@ public class Node<T> {
 
     }
 
-     String getNameAndCentrality() {
+    String getNameAndCentrality() {
         return dataNode.toString() + " " + centralityValue;
+    }
+
+
+    public Node<T> removeEdgesWithHighCentralityValue(Double meanPlusStandardDeviation) {
+        return new Node<>(dataNode, shortestDistanceFromSource, 1, predecessors, edges.pruneWithCentralityValue(meanPlusStandardDeviation), centralityValue, 1.5, false);
+    }
+
+    public Boolean hasHigherCentralityValue(Double centralityValue) {
+        return this.centralityValue > centralityValue;
+    }
+
+
+    public Node<T> visited() {
+        this.isVisited = true;
+        return this;
+    }
+
+    public Double updatePairDependencies(Node<T> successorNode) {
+        this.pairDependency = this.pairDependency + ((numberOfShortestPathFromSource.doubleValue() / successorNode.getNumberOfShortestPathFromSource().doubleValue())
+                * (1 + successorNode.getPairDependency()));
+        return this.pairDependency;
     }
 }

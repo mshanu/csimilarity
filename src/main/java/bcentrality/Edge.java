@@ -13,8 +13,11 @@ public class Edge {
         return weight.compareTo(edge.weight);
     }
 
-
     public void updateShortestDistance(Node parent, double distanceFromSource) {
         toNode.updateDistance(parent, distanceFromSource + weight);
+    }
+
+    public Boolean hasHigherCentralityValue(Double centralityValue) {
+        return toNode.hasHigherCentralityValue(centralityValue);
     }
 }

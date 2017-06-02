@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class Graph {
     @Getter
     private List<Node> nodes;
-    
+
 
     public Graph(List<Node> nodes) {
         this.nodes = nodes;
@@ -17,19 +17,26 @@ public class Graph {
     public Nodes getShortestDistanceForAllNodesFrom(Node node) {
         this.nodes.stream().forEach(Node::initShortDistanceCalculation);
         node.makeStartingNode();
-        return new Nodes(dijstraksTraversal(new ArrayList<>(nodes),new HashSet<>()));
+        return new Nodes(dijstraksTraversal(new ArrayList<>(nodes), new HashSet<>()));
     }
 
-    public void calculateCentralityValue() {
+    public Graph calculateCentralityValue() {
         nodes.stream().forEach(node -> {
             Set<Node> nodesWithShortestPaths = getShortestDistanceForAllNodesFrom(node).getNodes();
             nodesWithShortestPaths.forEach(node1 -> {
-                Integer totalShortestPathToSource = node1.getNumberOfShortestDistancePaths();
-                node1.updateCentrality(totalShortestPathToSource);
+                Integer totalShortestPathToSource = node1.getNumberOfShortestPathFromSource();
+                node1.updatePairDependencies(totalShortestPathToSource);
             });
         });
+        return new Graph(nodes);
     }
 
+    /*
+    Learned: Previous implementation was of keeping another collection of nodes which are covered
+    Removing the nodes from the list on each iteration and.
+    nodes.stream().min(Comparator.comparing(Node::getShortestDistanceFromSource)).get()
+    going with priority que next.
+     */
     private HashSet<Node> dijstraksTraversal(List<Node> nodes, HashSet<Node> shortestDistanceCalculatedNodes) {
         if (nodes.isEmpty()) {
             return shortestDistanceCalculatedNodes;
@@ -38,7 +45,7 @@ public class Graph {
         nodes.remove(leastDistantNode);
         leastDistantNode.updateTheAdjacentNodeDistance();
         shortestDistanceCalculatedNodes.add(leastDistantNode);
-        return dijstraksTraversal(nodes,shortestDistanceCalculatedNodes);
+        return dijstraksTraversal(nodes, shortestDistanceCalculatedNodes);
 
     }
 
@@ -48,13 +55,6 @@ public class Graph {
         return new Graph(nodes.stream().map(node -> node.prune(numberOfEdgesToRetain)).collect(Collectors.toList()));
     }
 
-    public void createCluster() {
-        calculateCentralityValue();
-        Double meanCentrality = nodes.stream().collect(Collectors.averagingDouble(Node::getCentralityValue));
-        Double sqrt = Math.sqrt(nodes.stream().collect(Collectors.summingDouble(node -> (node.getCentralityValue() - meanCentrality) * (node.getCentralityValue() - meanCentrality))));
-        Double standardDeviation = sqrt / nodes.size();
-        System.out.println(meanCentrality+standardDeviation);
-    }
 
     @Override
     public String toString() {

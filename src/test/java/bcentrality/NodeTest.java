@@ -1,60 +1,61 @@
 package bcentrality;
 
+import bcentrality.factory.NodeFactory;
 import org.junit.Test;
 
+import java.util.DoubleSummaryStatistics;
 import java.util.HashSet;
 
-import static java.util.Arrays.asList;
+import static bcentrality.factory.NodeFactory.*;
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 public class NodeTest {
-
     @Test
     public void shouldUpdateTheNodeDistanceIfLessThanTheCurrentDistnaceFromSource() throws Exception {
-        Node nodeA = new Node<>("a");
-        Node nodeB = new Node<>("b");
-        Node updatedNode = nodeA.updateDistance(nodeB, 101.2);
-        assertThat(updatedNode.getParentNodes().getNode(nodeB), is(nodeB));
-        assertThat(updatedNode.getShortestDistanceFromSource(), is(101.2));
+        Node nodeA = aNodeWithShortestDistanceFromSource("a", 101.2), nodeB = aNodeWithNumberOfShortestDistance("b", 2);
+        assertThat(nodeA.getNumberOfShortestPathFromSource(), is(0));
+        Node updatedNode = nodeA.updateDistance(nodeB, 100.2);
+        assertThat(updatedNode.getPredecessors().getNode(nodeB), is(nodeB));
+        assertThat(updatedNode.getShortestDistanceFromSource(), is(100.2));
+        assertThat(updatedNode.getNumberOfShortestPathFromSource(), is(2));
 
+    }
+
+    @Test
+    public void shouldAddThePredecessorAndAddTheNumberOfShortestPathsWhenUpdatedDistanceIsSameAsCurrentShortestPathDistance() {
+        HashSet<Node> nodes = new HashSet<>();
+        nodes.add(aNode("c"));
+        Node nodeA = aNodeWithShortestDistanceFromSource("a", 101.2, new Nodes(nodes)), nodeB = aNodeWithNumberOfShortestDistance("b", 2);
+        Node updatedNode = nodeA.updateDistance(nodeB, 100.2);
+        assertThat(nodeA.getNumberOfShortestPathFromSource(), is(2));
+        assertThat(updatedNode.getPredecessors().getNodes(), hasSize(2));
+    }
+
+    @Test
+    public void shouldUpdateThePairDependencyForAGivenNodeAndSuccessor() {
+        Node<String> a = aNodeWithNumberOfShortestDistancPredecessorsAndPairDependency("a", 2.0, 4, nodes());
+        Node<String> b = aNodeWithNumberOfShortestDistancPredecessorsAndPairDependency("b", 1.5, 2, nodes());
+        assertThat(b.updatePairDependencies(a).intValue(),is(3));
+        assertThat(b.getPairDependency().intValue(),is(3));
     }
 
     @Test
     public void shouldUpdateTheNodeDistanceForAllTheAdjacentNodes() throws Exception {
-        Node adjacentNode1 = mock(Node.class);
-        Node adjacentNode2 = mock(Node.class);
-        Node<Integer> node = new Node<>(1, 101.0, mock(Nodes.class), new Edges(asList(new Edge(adjacentNode1, 102.2), new Edge(adjacentNode2, 105.4))), 0.0);
+        Edges edges = mock(Edges.class);
+        Node node = aNodeWithEdgesAndShortestDistanceFromSource(edges, 123.3);
         node.updateTheAdjacentNodeDistance();
-        verify(adjacentNode1).updateDistance(node, 203.2);
-        verify(adjacentNode2).updateDistance(node, 206.4);
-
+        verify(edges).updateShortestDistant(node, 123.3);
     }
 
     @Test
-    public void shouldReturnTheNumberOfShortestDistance() {
-
-        Node node4 = new Node(4, null, new Nodes(), null, null);
-
-        Nodes parentNodesToNode2 = new Nodes(new HashSet<>(asList(node4)));
-        Nodes parentNodesToNode3 = new Nodes(new HashSet<>(asList(node4)));
-
-        Node<Integer> node2 = new Node(2, null, parentNodesToNode2, null, null);
-        Node<Integer> node3 = new Node(3, null, parentNodesToNode3, null, null);
-
-        Nodes parentToNode1 = new Nodes(new HashSet<>(asList(node2, node3)));
-        Node<Integer> node1 = new Node<>(1, null, parentToNode1, null, 0.0);
-        assertThat(node1.getNumberOfShortestDistancePaths(), is(2));
-
+    public void shouldMarkTheNodeVisited() {
+        Node<String> unvisitedNode = NodeFactory.anUnvisitedNode("a");
+        assertThat(unvisitedNode.visited().getIsVisited(), is(true));
     }
 
-    @Test
-    public void shouldCalculateTheCentralityValueIfGivenTheTotalPath() {
-        Node<Integer> spiedNode = spy(new Node<>(1, null, new Nodes(new HashSet<Node>(asList(mock(Node.class)))), null, 0.0));
-        when(spiedNode.getNumberOfShortestDistancePaths()).thenReturn(4);
 
-        spiedNode.updateCentrality(5);
-        assertThat(spiedNode.getCentralityValue(), is(0.8));
-    }
 }
