@@ -2,10 +2,10 @@ package bcentrality;
 
 import lombok.Getter;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Stack;
 import java.util.stream.Collectors;
 
 public class Graph {
@@ -17,16 +17,15 @@ public class Graph {
         this.nodes = nodes;
     }
 
-    public Stack<Node> getShortestDistanceForAllNodesFrom(Node node) {
+    public ArrayDeque<Node> getShortestDistanceForAllNodesFrom(Node node) {
         this.nodes.stream().forEach(Node::initShortDistanceCalculation);
         node.makeStartingNode();
-        Stack<Node> nodes = dijstraksTraversal(new ArrayList<>(this.nodes), new Stack<>());
-        return nodes;
+        return dijstraksTraversal(new ArrayList<>(this.nodes), new ArrayDeque<>());
     }
 
     public Graph calculateCentralityValue() {
         nodes.stream().forEach(sourceNode -> {
-            Stack<Node> nodesWithShortestPaths = getShortestDistanceForAllNodesFrom(sourceNode);
+            ArrayDeque<Node> nodesWithShortestPaths = getShortestDistanceForAllNodesFrom(sourceNode);
             nodesWithShortestPaths.forEach(node1 -> {
                 node1.updatePairDependencies();
                 if (!node1.equals(sourceNode)) {
@@ -43,7 +42,7 @@ public class Graph {
     nodes.stream().min(Comparator.comparing(Node::getShortestDistanceFromSource)).get()
     going with priority que next.
      */
-    private Stack<Node> dijstraksTraversal(List<Node> nodes, Stack<Node> shortestDistanceCalculatedNodes) {
+    private ArrayDeque<Node> dijstraksTraversal(List<Node> nodes, ArrayDeque<Node> shortestDistanceCalculatedNodes) {
         if (nodes.isEmpty()) {
             return shortestDistanceCalculatedNodes;
         }

@@ -22,7 +22,7 @@ public class App {
         GraphBuilder<Document> documentGraphBuilder = new GraphBuilder<>();
         pairs.stream().forEach(pair -> documentGraphBuilder.addEdge(pair.getFromDocument(), pair.getToDocument(), 1-pair.cosineSimilarity()));
         Graph graph = documentGraphBuilder.build();
-        Graph sparsedGraph = graph.sparse(0.2);
+        Graph sparsedGraph = graph.sparse(0.3);
         System.out.println(sparsedGraph.calculateCentralityValue());
     }
 

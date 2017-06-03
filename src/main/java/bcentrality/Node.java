@@ -18,7 +18,7 @@ import java.util.HashSet;
 public class Node<T> {
     private T dataNode;
     private Double shortestDistanceFromSource;
-    private Integer numberOfShortestPathFromSource = 0;
+    private Integer numberOfShortestPathFromSource = 1;
     private Nodes predecessors = new Nodes(new HashSet<>());
     private Edges edges = new Edges(new ArrayList<>());
     private Double centralityValue = 0.0;

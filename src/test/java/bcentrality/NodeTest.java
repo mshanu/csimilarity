@@ -2,7 +2,9 @@ package bcentrality;
 
 import org.junit.Test;
 
+import java.util.ArrayDeque;
 import java.util.HashSet;
+import java.util.Stack;
 
 import static bcentrality.factory.NodeFactory.*;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
@@ -15,7 +17,7 @@ public class NodeTest {
     @Test
     public void shouldUpdateTheNodeDistanceIfLessThanTheCurrentDistnaceFromSource() throws Exception {
         Node nodeA = aNodeWithShortestDistanceFromSource("a", 101.2), nodeB = aNodeWithNumberOfShortestDistance("b", 2);
-        assertThat(nodeA.getNumberOfShortestPathFromSource(), is(0));
+        assertThat(nodeA.getNumberOfShortestPathFromSource(), is(1));
         Node updatedNode = nodeA.updateDistance(nodeB, 100.2);
         assertThat(updatedNode.getPredecessors().getNode(nodeB), is(nodeB));
         assertThat(updatedNode.getShortestDistanceFromSource(), is(100.2));
@@ -29,7 +31,7 @@ public class NodeTest {
         nodes.add(aNode("c"));
         Node nodeA = aNodeWithShortestDistanceFromSource("a", 101.2, new Nodes(nodes)), nodeB = aNodeWithNumberOfShortestDistance("b", 2);
         Node updatedNode = nodeA.updateDistance(nodeB, 101.2);
-        assertThat(nodeA.getNumberOfShortestPathFromSource(), is(2));
+        assertThat(nodeA.getNumberOfShortestPathFromSource(), is(3));
         assertThat(updatedNode.getPredecessors().getNodes(), hasSize(2));
     }
 
