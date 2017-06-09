@@ -2,6 +2,8 @@ package bcentrality;
 
 import org.junit.Test;
 
+import java.util.HashMap;
+
 import static java.util.stream.Collectors.toList;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
@@ -10,7 +12,7 @@ import static org.junit.Assert.assertThat;
 public class GraphBuilderTest {
     @Test
     public void shouldBuildTheGraph() {
-        GraphBuilder<String> stringGraphBuilder = new GraphBuilder<>();
+        GraphBuilder<String> stringGraphBuilder = new GraphBuilder<>(new HashMap<>());
         stringGraphBuilder.addEdge("A", "B", 3.0);
         stringGraphBuilder.addEdge("B", "C", 4.0);
         stringGraphBuilder.addEdge("A", "D", 5.0);

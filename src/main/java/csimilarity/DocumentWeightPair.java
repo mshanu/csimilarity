@@ -3,6 +3,7 @@ package csimilarity;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
+import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -40,6 +41,25 @@ public class DocumentWeightPair {
     }
 
     public Double cosineSimilarity() {
+        Set<String> allWords = new HashSet<>(documentA.words());
+        allWords.addAll(documentB.words());
+        List<Double> documentAWeightSquares = new ArrayList<>();
+        List<Double> documentBWeightSquares = new ArrayList<>();
+        List<Double> crossProduct = new ArrayList<>();
+        allWords.stream().forEach(word -> {
+            Double docAWeight = documentA.getTfIf(word);
+            Double docBWeight = documentB.getTfIf(word);
+            crossProduct.add(docAWeight * docBWeight);
+            documentAWeightSquares.add(docAWeight * docAWeight);
+            documentBWeightSquares.add(docBWeight * docBWeight);
+        });
+        Double crossProductSum = crossProduct.stream().reduce(Double::sum).get();
+        Double documentAWeightSquareSum = documentAWeightSquares.stream().reduce(Double::sum).get();
+        Double documentBWeightSquareSum = documentBWeightSquares.stream().reduce(Double::sum).get();
+        return crossProductSum / (Math.sqrt(documentAWeightSquareSum) * Math.sqrt(documentBWeightSquareSum));
+    }
+
+    public static Double cosineSimilarity(DocumentWeight documentA, DocumentWeight documentB) {
         Set<String> allWords = new HashSet<>(documentA.words());
         allWords.addAll(documentB.words());
         List<Double> documentAWeightSquares = new ArrayList<>();

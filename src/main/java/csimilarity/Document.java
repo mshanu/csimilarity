@@ -51,6 +51,10 @@ public class Document {
         }
     }
 
+    public Boolean isNotEmpty() {
+        return !wordCountMap.isEmpty();
+    }
+
     private static List<String> extractWords(Path path) throws IOException {
         List<String> words = new LinkedList<String>();
 //Read the File and store the content in a single String

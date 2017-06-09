@@ -5,7 +5,8 @@ import java.util.Map;
 import java.util.Set;
 
 public class DocumentWeight {
-    private Document document;
+    private
+    Document document;
     private Map<String, Double> wordTfIf = new HashMap<>();
 
     public DocumentWeight(Document document, Documents documents) {

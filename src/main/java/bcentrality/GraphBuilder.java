@@ -1,9 +1,12 @@
 package bcentrality;
 
+import lombok.AllArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+@AllArgsConstructor
 public class GraphBuilder<T> {
     Map<T, Node> nodeMap = new HashMap<>();
 

@@ -36,7 +36,7 @@ public class Node<T> {
     }
 
     public void createEdge(Node node, Double weight) {
-        edges.add(new Edge(node, weight));
+        edges.create(node, weight);
     }
 
     public void updateTheAdjacentNodeDistance() {
@@ -77,16 +77,13 @@ public class Node<T> {
         this.numberOfShortestPathFromSource = 1;
     }
 
-    public Boolean hasEdge(Node to) {
-        return edges.hasNode(to);
-    }
 
     @Override
     public String toString() {
         if (edges.isEmpty()) {
             return "";
         }
-        String template = "\"%s\" -> \"%s\" [label =\"%s\"];";
+        String template = "\"%s\" -> \"%s\" [label =\"%s\"];\n";
         return edges.getEdges().stream().map(edge -> String.format(template, getNameAndCentrality(), edge.getToNode().getNameAndCentrality(), edge.getWeight())).reduce(String::concat).get();
 
     }
@@ -109,5 +106,9 @@ public class Node<T> {
         this.pairDependency = this.pairDependency + ((numberOfShortestPathFromSource.doubleValue() / successorNode.getNumberOfShortestPathFromSource().doubleValue())
                 * (1 + successorNode.getPairDependency()));
         return this.pairDependency;
+    }
+
+    public boolean hasEdge(Node to) {
+        return edges.hasNode(to);
     }
 }
