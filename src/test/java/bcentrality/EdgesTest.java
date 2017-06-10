@@ -7,6 +7,7 @@ import org.junit.Test;
 import static java.util.Arrays.asList;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
 public class EdgesTest {
@@ -48,5 +49,11 @@ public class EdgesTest {
         assertThat(prunedEdges.size(), is(2));
         assertThat(prunedEdges.getEdges(), Matchers.containsInAnyOrder(edgeWithLowerCentralityValue, anotherEdgeWithLowerCentralityValue));
 
+    }
+
+    @Test
+    public void shouldReturnTheFormattedWeightWithFourDecimalPoint() {
+        Edge edge = new Edge(mock(Node.class), 1.239239238);
+        assertThat(edge.getFormatattedWeight(), is("1.2392"));
     }
 }

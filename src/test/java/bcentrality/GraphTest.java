@@ -1,10 +1,12 @@
 package bcentrality;
 
+import org.hamcrest.Matchers;
 import org.junit.Test;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 import static bcentrality.factory.NodeFactory.aNode;
 import static java.util.Arrays.asList;
@@ -30,6 +32,30 @@ public class GraphTest {
 
         assertThat(decimalFormat.format(nodeD.getShortestDistanceFromSource()), is("16.8"));
 
+    }
+
+    @Test
+    public void shouldGetClusterOfDisconnectedGraphs() {
+        Node<String> a = aNode("a");
+        Node<String> b = aNode("b");
+        Node<String> c = aNode("c");
+        Node<String> d = aNode("d");
+        Node<String> e = aNode("e");
+        Node<String> f = aNode("f");
+        Node<String> g = aNode("g");
+        a.createEdge(b, 1.3);
+        a.createEdge(c, 2.3);
+        c.createEdge(e, 4.5);
+        b.createEdge(e, 1.5);
+
+        d.createEdge(f, 2.5);
+        d.createEdge(g, 2.5);
+        f.createEdge(g, 2.5);
+        Graph graph = new Graph(asList(a, b, c, d, e, f, g));
+        List<Graph> clusters = graph.clusters();
+        assertThat(clusters.size(), is(2));
+        assertThat(clusters.get(0).getNodes(), Matchers.containsInAnyOrder(a,b,c,e));
+        assertThat(clusters.get(1).getNodes(), Matchers.containsInAnyOrder(d,f,g));
     }
 
     @Test

@@ -6,10 +6,13 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Set;
 
 @EqualsAndHashCode(of = "dataNode")
 @Getter
@@ -23,6 +26,7 @@ public class Node<T> {
     private Edges edges = new Edges(new ArrayList<>());
     private Double centralityValue = 0.0;
     private Double pairDependency = 0.0;
+    private Boolean isVisited = false;
 
     public Node(T dataNode) {
         this.dataNode = dataNode;
@@ -84,17 +88,22 @@ public class Node<T> {
             return "";
         }
         String template = "\"%s\" -> \"%s\" [label =\"%s\"];\n";
-        return edges.getEdges().stream().map(edge -> String.format(template, getNameAndCentrality(), edge.getToNode().getNameAndCentrality(), edge.getWeight())).reduce(String::concat).get();
+        return edges.getEdges().stream().map(edge -> String.format(template, getNameAndCentrality(), edge.getToNode().getNameAndCentrality(), edge.getFormatattedWeight())).reduce(String::concat).get();
 
     }
 
     String getNameAndCentrality() {
-        return dataNode.toString() + " " + centralityValue;
+        return shorten(dataNode.toString()) + " " + BigDecimal.valueOf(centralityValue).setScale(2).toString();
+    }
+
+    private String shorten(String path) {
+        String[] split = path.split("/");
+        return split[split.length - 1];
     }
 
 
     public Node<T> removeEdgesWithHighCentralityValue(Double meanPlusStandardDeviation) {
-        return new Node<>(dataNode, shortestDistanceFromSource, 1, predecessors, edges.pruneWithCentralityValue(meanPlusStandardDeviation), centralityValue, 1.5);
+        return new Node<>(dataNode, shortestDistanceFromSource, 1, predecessors, edges.pruneWithCentralityValue(meanPlusStandardDeviation), centralityValue, 1.5, false);
     }
 
     public Boolean hasHigherCentralityValue(Double centralityValue) {
@@ -110,5 +119,18 @@ public class Node<T> {
 
     public boolean hasEdge(Node to) {
         return edges.hasNode(to);
+    }
+
+    public void toString(BufferedWriter writer) throws IOException {
+        writer.write(toString());
+    }
+
+    public Set<Node> getEdgeNodes() {
+        return edges.getNodes();
+    }
+
+    public Node<T> visited() {
+        this.isVisited = true;
+        return this;
     }
 }

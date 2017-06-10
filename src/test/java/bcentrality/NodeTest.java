@@ -1,17 +1,15 @@
 package bcentrality;
 
+import csimilarity.Document;
 import org.junit.Test;
 
-import java.util.ArrayDeque;
 import java.util.HashSet;
-import java.util.Stack;
 
 import static bcentrality.factory.NodeFactory.*;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 public class NodeTest {
     @Test
@@ -50,6 +48,15 @@ public class NodeTest {
         Node node = aNodeWithEdgesAndShortestDistanceFromSource(edges, 123.3);
         node.updateTheAdjacentNodeDistance();
         verify(edges).updateShortestDistant(node, 123.3);
+    }
+
+    @Test
+    public void shouldReturnTheLastPartOFthePathAsNameAndCentralityValue() {
+        Document document = mock(Document.class);
+        Node<Document> documentNode = new Node<>(document, null, null, null, null, 1.34323, null,false);
+        when(document.toString()).thenReturn("/users/someuser/input/path asdf /asdfas/asdf.txt");
+        when(document.toString()).thenReturn("/users/someuser/input/path asdf /asdfas/asdf.txt");
+        assertThat(documentNode.getNameAndCentrality(), is("asdf.txt 1.34323"));
     }
 
 

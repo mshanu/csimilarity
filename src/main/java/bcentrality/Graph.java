@@ -2,11 +2,11 @@ package bcentrality;
 
 import lombok.Getter;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.util.*;
+
+import static java.util.stream.Collectors.toList;
 
 public class Graph {
     @Getter
@@ -56,7 +56,7 @@ public class Graph {
     public Graph sparse(Double value) {
         Integer graphSize = nodes.size();
         Integer numberOfEdgesToRetain = new Double(Math.pow(graphSize, value)).intValue();
-        return new Graph(nodes.stream().map(node -> node.prune(numberOfEdgesToRetain)).collect(Collectors.toList()));
+        return new Graph(nodes.stream().map(node -> node.prune(numberOfEdgesToRetain)).collect(toList()));
     }
 
 
@@ -64,4 +64,44 @@ public class Graph {
     public String toString() {
         return this.nodes.stream().map(Node::toString).reduce(String::concat).get();
     }
+
+    public void toString(BufferedWriter writer) throws IOException {
+        writer.write("digraph myGrpah { \n node [fontsize=8,nodesep=4.0,fontcolor=blue]; \n");
+        this.nodes.forEach(node -> {
+            try {
+                node.toString(writer);
+            } catch (IOException e) {
+                throw new RuntimeException();
+            }
+        });
+        writer.write("}");
+    }
+
+    public List<Graph> clusters() {
+        return createCluster(new ArrayList<>(), nodes);
+    }
+
+    List<Graph> createCluster(List<Graph> graphs, List<Node> nodes) {
+        Optional<Node> hasAnyNodeYetToBeVisited = nodes.stream().filter(node -> !node.getIsVisited()).findFirst();
+        if (hasAnyNodeYetToBeVisited.isPresent()) {
+            Queue<Node> queue = new ArrayDeque<>();
+            queue.add(hasAnyNodeYetToBeVisited.get().visited());
+            bfs(queue);
+            List<Node> visitedNodes = nodes.stream().filter(Node::getIsVisited).collect(toList());
+            graphs.add(new Graph(visitedNodes));
+            return createCluster(graphs, nodes.stream().filter(node -> !node.getIsVisited()).collect(toList()));
+        }
+        return graphs;
+    }
+
+    public void bfs(Queue<Node> queue) {
+        if (!queue.isEmpty()) {
+            Node visitedNode = queue.remove();
+            Set<Node> edgeNodes = visitedNode.getEdgeNodes();
+            edgeNodes.stream().map(Node::visited).forEach(queue::add);
+            bfs(queue);
+        }
+    }
+
+
 }

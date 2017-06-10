@@ -3,6 +3,10 @@ package bcentrality;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 @AllArgsConstructor
 @Getter
 public class Edge {
@@ -19,5 +23,9 @@ public class Edge {
 
     public Boolean hasHigherCentralityValue(Double centralityValue) {
         return toNode.hasHigherCentralityValue(centralityValue);
+    }
+
+    public String getFormatattedWeight() {
+        return BigDecimal.valueOf(weight).setScale(4, RoundingMode.HALF_UP).toString();
     }
 }
