@@ -21,10 +21,11 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-@Getter
+
 @EqualsAndHashCode(exclude = "wordCountMap")
 @AllArgsConstructor
 public class Document {
+    @Getter
     private String name;
     private Map<String, Long> wordCountMap = new HashMap<>();
 

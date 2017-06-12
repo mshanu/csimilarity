@@ -6,14 +6,14 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.*;
 
-import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toSet;
 
 public class Graph {
     @Getter
-    private List<Node> nodes;
+    private Set<Node> nodes;
 
 
-    public Graph(List<Node> nodes) {
+    public Graph(Set<Node> nodes) {
         this.nodes = nodes;
     }
 
@@ -23,7 +23,7 @@ public class Graph {
         return dijstraksTraversal(new ArrayList<>(this.nodes), new ArrayDeque<>());
     }
 
-    public Graph calculateCentralityValue() {
+    public CentralityGraph calculateCentralityValue() {
         nodes.stream().forEach(sourceNode -> {
             ArrayDeque<Node> nodesWithShortestPaths = getShortestDistanceForAllNodesFrom(sourceNode);
             nodesWithShortestPaths.forEach(node1 -> {
@@ -33,7 +33,7 @@ public class Graph {
                 }
             });
         });
-        return new Graph(nodes);
+        return new CentralityGraph(new Graph(nodes));
     }
 
     /*
@@ -56,7 +56,7 @@ public class Graph {
     public Graph sparse(Double value) {
         Integer graphSize = nodes.size();
         Integer numberOfEdgesToRetain = new Double(Math.pow(graphSize, value)).intValue();
-        return new Graph(nodes.stream().map(node -> node.prune(numberOfEdgesToRetain)).collect(toList()));
+        return new Graph(nodes.stream().map(node -> node.prune(numberOfEdgesToRetain)).collect(toSet()));
     }
 
 
@@ -81,15 +81,15 @@ public class Graph {
         return createCluster(new ArrayList<>(), nodes);
     }
 
-    List<Graph> createCluster(List<Graph> graphs, List<Node> nodes) {
+    List<Graph> createCluster(List<Graph> graphs, Set<Node> nodes) {
         Optional<Node> hasAnyNodeYetToBeVisited = nodes.stream().filter(node -> !node.getIsVisited()).findFirst();
         if (hasAnyNodeYetToBeVisited.isPresent()) {
             Queue<Node> queue = new ArrayDeque<>();
             queue.add(hasAnyNodeYetToBeVisited.get().visited());
             bfs(queue);
-            List<Node> visitedNodes = nodes.stream().filter(Node::getIsVisited).collect(toList());
+            Set<Node> visitedNodes = nodes.stream().filter(Node::getIsVisited).collect(toSet());
             graphs.add(new Graph(visitedNodes));
-            return createCluster(graphs, nodes.stream().filter(node -> !node.getIsVisited()).collect(toList()));
+            return createCluster(graphs, nodes.stream().filter(node -> !node.getIsVisited()).collect(toSet()));
         }
         return graphs;
     }
@@ -97,8 +97,9 @@ public class Graph {
     public void bfs(Queue<Node> queue) {
         if (!queue.isEmpty()) {
             Node visitedNode = queue.remove();
+            //visitedNode.getEdgeNodes().stream().filter(n -> n.);
             Set<Node> edgeNodes = visitedNode.getEdgeNodes();
-            edgeNodes.stream().map(Node::visited).forEach(queue::add);
+            edgeNodes.stream().filter(node -> !node.getIsVisited()).map(Node::visited).forEach(queue::add);
             bfs(queue);
         }
     }

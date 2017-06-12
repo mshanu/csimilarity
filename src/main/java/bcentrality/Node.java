@@ -40,7 +40,12 @@ public class Node<T> {
     }
 
     public void createEdge(Node node, Double weight) {
-        edges.create(node, weight);
+        if (!edges.hasNode(node)) {
+            edges.create(node, weight);
+        }
+        if (!node.hasEdge(this)) {
+            node.createEdge(this, weight);
+        }
     }
 
     public void updateTheAdjacentNodeDistance() {
@@ -93,7 +98,7 @@ public class Node<T> {
     }
 
     String getNameAndCentrality() {
-        return shorten(dataNode.toString()) + " " + BigDecimal.valueOf(centralityValue).setScale(2).toString();
+        return shorten(dataNode.toString()) + " " + BigDecimal.valueOf(centralityValue).setScale(5, BigDecimal.ROUND_UP).toString();
     }
 
     private String shorten(String path) {

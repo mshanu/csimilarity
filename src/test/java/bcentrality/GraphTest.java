@@ -25,7 +25,7 @@ public class GraphTest {
         a.createEdge(c, 24.3);
         b.createEdge(d, 4.5);
         c.createEdge(d, 4.5);
-        Graph graph = new Graph(new ArrayList<>(asList(a, b, c, d)));
+        Graph graph = new Graph(new HashSet<>(asList(a, b, c, d)));
         Nodes shortestDistanceForAllNodesFrom = new Nodes(new HashSet<>(graph.getShortestDistanceForAllNodesFrom(a)));
         Node nodeD = shortestDistanceForAllNodesFrom.getNode(d);
         DecimalFormat decimalFormat = new DecimalFormat("##.##");
@@ -51,7 +51,7 @@ public class GraphTest {
         d.createEdge(f, 2.5);
         d.createEdge(g, 2.5);
         f.createEdge(g, 2.5);
-        Graph graph = new Graph(asList(a, b, c, d, e, f, g));
+        Graph graph = new Graph(new HashSet<>(asList(a, b, c, d, e, f, g)));
         List<Graph> clusters = graph.clusters();
         assertThat(clusters.size(), is(2));
         assertThat(clusters.get(0).getNodes(), Matchers.containsInAnyOrder(a,b,c,e));
@@ -71,7 +71,7 @@ public class GraphTest {
         b.createEdge(c, 1.0);
         d.createEdge(c, 2.0);
         c.createEdge(e, 3.0);
-        Graph graph = new Graph(asList(a, b, c, d, e));
+        Graph graph = new Graph(new HashSet<>(asList(a, b, c, d, e)));
         Nodes nodes = new Nodes(new HashSet<>(graph.getShortestDistanceForAllNodesFrom(a)));
         assertThat(nodes.getNode(e).getNumberOfShortestPathFromSource(), is(2));
         assertThat(nodes.getNode(c).getNumberOfShortestPathFromSource(), is(2));
@@ -106,7 +106,7 @@ public class GraphTest {
         a32.createEdge(a41, 8.00);
 
 
-        Graph graph = new Graph(new ArrayList<>(asList(a, a11, a12, a21, a22, a23, a24, a31, a32, a41)));
+        Graph graph = new Graph(new HashSet<>(asList(a, a11, a12, a21, a22, a23, a24, a31, a32, a41)));
         Nodes shortestDistanceForAllNodesFrom = new Nodes(new HashSet<>(graph.getShortestDistanceForAllNodesFrom(a)));
         Node lastNode = shortestDistanceForAllNodesFrom.getNode(a41);
         DecimalFormat decimalFormat = new DecimalFormat("##.##");
@@ -114,4 +114,7 @@ public class GraphTest {
         assertThat(decimalFormat.format(lastNode.getShortestDistanceFromSource()), is("41.4"));
         assertThat(lastNode.getNumberOfShortestPathFromSource(), is(3));
     }
+
+
+
 }
