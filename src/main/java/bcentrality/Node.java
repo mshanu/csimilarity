@@ -90,7 +90,7 @@ public class Node<T> {
     @Override
     public String toString() {
         if (edges.isEmpty()) {
-            return "";
+            return getNameAndCentrality();
         }
         String template = "\"%s\" -> \"%s\" [label =\"%s\"];\n";
         return edges.getEdges().stream().map(edge -> String.format(template, getNameAndCentrality(), edge.getToNode().getNameAndCentrality(), edge.getFormatattedWeight())).reduce(String::concat).get();
@@ -108,7 +108,8 @@ public class Node<T> {
 
 
     public Node<T> removeEdgesWithHighCentralityValue(Double meanPlusStandardDeviation) {
-        return new Node<>(dataNode, shortestDistanceFromSource, 1, predecessors, edges.pruneWithCentralityValue(meanPlusStandardDeviation), centralityValue, 1.5, false);
+        edges = new Edges(edges.pruneWithCentralityValue(meanPlusStandardDeviation));
+        return this;
     }
 
     public Boolean hasHigherCentralityValue(Double centralityValue) {
@@ -137,5 +138,9 @@ public class Node<T> {
     public Node<T> visited() {
         this.isVisited = true;
         return this;
+    }
+
+    public void initbfs() {
+        isVisited = false;
     }
 }

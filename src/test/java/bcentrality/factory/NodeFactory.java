@@ -56,4 +56,8 @@ public class NodeFactory {
     public static Nodes nodes(Node... nodes) {
         return new Nodes(new HashSet<>(Arrays.asList(nodes)));
     }
+
+    public static <T> Node<T> aNodeWithCentralityValue(T datanode, Double centralityValue) {
+        return Builder.forClass(Node.class).with("dataNode", datanode).with("centralityValue", centralityValue).build();
+    }
 }

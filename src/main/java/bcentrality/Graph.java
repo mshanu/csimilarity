@@ -78,6 +78,7 @@ public class Graph {
     }
 
     public List<Graph> clusters() {
+        nodes.forEach(Node::initbfs);
         return createCluster(new ArrayList<>(), nodes);
     }
 
@@ -92,6 +93,14 @@ public class Graph {
             return createCluster(graphs, nodes.stream().filter(node -> !node.getIsVisited()).collect(toSet()));
         }
         return graphs;
+    }
+
+    public Boolean hasClusters() {
+        nodes.forEach(node -> node.initbfs());
+        ArrayDeque<Node> queue = new ArrayDeque<>();
+        queue.add(nodes.stream().filter(node -> !node.getIsVisited()).findFirst().get().visited());
+        bfs(queue);
+        return nodes.stream().filter(node -> !node.getIsVisited()).findAny().isPresent();
     }
 
     public void bfs(Queue<Node> queue) {

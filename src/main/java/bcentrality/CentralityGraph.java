@@ -7,7 +7,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toSet;
 
 @AllArgsConstructor
 public class CentralityGraph {
@@ -28,9 +27,10 @@ public class CentralityGraph {
     public CentralityGraph removeEdgesWithHigherCentrality() {
         Set<Node> nodes = graph.getNodes();
         double meanPlusStandardDeviation = mean() + standardDeviationOfCentralities();
+        System.out.println("Mean and Standard Deviation"+ meanPlusStandardDeviation);
         List<Node> nodesWithHigherCentralityValues = nodes.stream().filter(node -> node.getCentralityValue() > meanPlusStandardDeviation).collect(toList());
-        Set<Node> trimmedNodes = nodesWithHigherCentralityValues.stream().map(node -> node.removeEdgesWithHighCentralityValue(meanPlusStandardDeviation)).collect(toSet());
-        return new CentralityGraph(new Graph(trimmedNodes));
+        nodesWithHigherCentralityValues.forEach(node -> node.removeEdgesWithHighCentralityValue(meanPlusStandardDeviation));
+        return new CentralityGraph(new Graph(nodes));
     }
 
     public List<Graph> getClusters() {

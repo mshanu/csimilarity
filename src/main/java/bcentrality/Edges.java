@@ -31,8 +31,8 @@ public class Edges {
         return this;
     }
 
-    public Edges pruneWithCentralityValue(Double centralityValue) {
-        return new Edges(edges.stream().filter(edge -> !edge.hasHigherCentralityValue(centralityValue)).collect(toList()));
+    public List<Edge> pruneWithCentralityValue(Double centralityValue) {
+        return edges.stream().filter(edge -> !edge.hasHigherCentralityValue(centralityValue)).collect(toList());
     }
 
 

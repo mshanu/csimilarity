@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.util.HashSet;
 
 import static bcentrality.factory.NodeFactory.*;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -53,11 +54,25 @@ public class NodeTest {
     @Test
     public void shouldReturnTheLastPartOFthePathAsNameAndCentralityValue() {
         Document document = mock(Document.class);
-        Node<Document> documentNode = new Node<>(document, null, null, null, null, 1.34323, null,false);
+        Node<Document> documentNode = new Node<>(document, null, null, null, null, 1.34323, null, false);
         when(document.toString()).thenReturn("/users/someuser/input/path asdf /asdfas/asdf.txt");
         when(document.toString()).thenReturn("/users/someuser/input/path asdf /asdfas/asdf.txt");
         assertThat(documentNode.getNameAndCentrality(), is("asdf.txt 1.34323"));
     }
 
+    @Test
+    public void shouldRemoveEdgesWithHighCentralityValue() {
+        Node<String> a = aNodeWithCentralityValue("a", 1.3);
+        Node<String> b = aNodeWithCentralityValue("b", 12.3);
+        Node<String> c = aNodeWithCentralityValue("c", 21.3);
+        Node<String> d = aNodeWithCentralityValue("d", 10.3);
+        a.createEdge(b, 1.1);
+        a.createEdge(c, 1.1);
+        b.createEdge(c, 1.1);
+        b.createEdge(d, 1.1);
+        c.createEdge(d, 1.1);
+        assertThat(b.getEdges().getNodes(), containsInAnyOrder(a, c, d));
+        assertThat(b.removeEdgesWithHighCentralityValue(12.0).getEdges().getNodes(), containsInAnyOrder(a, d));
+    }
 
 }

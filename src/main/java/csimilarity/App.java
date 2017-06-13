@@ -32,7 +32,10 @@ public class App {
         pairs.stream().forEach(pair -> documentGraphBuilder.addEdge(pair.getFromDocument(), pair.getToDocument(), 1 - pair.cosineSimilarity()));
         Graph graph = documentGraphBuilder.build();
         System.out.println("Build complete, Doing sparse");
-        Graph sparsedGraph = graph.sparse(0.5);
+        Graph sparsedGraph = graph.sparse(0.6);
+        if (sparsedGraph.hasClusters()) {
+            throw new RuntimeException("Sparsed Graph has clusters");
+        }
 
         System.out.println("Calculating centraliry");
         CentralityGraph centralityGraph = sparsedGraph.calculateCentralityValue();
@@ -41,7 +44,7 @@ public class App {
         graphs.forEach(eg -> {
             try {
                 BufferedWriter writer = Files.newBufferedWriter(Paths.get("/Users/shanu/Projects/csimilarity/output.dot" + (++i[0])));
-                graph.toString(writer);
+                eg.toString(writer);
                 writer.close();
             } catch (IOException e) {
                 throw new RuntimeException();
@@ -54,12 +57,12 @@ public class App {
 
     private static Documents getDocuments() {
         try (final Stream<Path> pathStream = Files.walk(Paths.get("/Users/shanu/Downloads/Input"), FileVisitOption.FOLLOW_LINKS)) {
-            return pathStream.filter(path -> !path.toFile().isDirectory() && path.toAbsolutePath().toString().length() % 7 == 0 &&
+            return pathStream.filter(path -> !path.toFile().isDirectory() && path.toAbsolutePath().toString().length() % 11 == 0 &&
                     path.toFile().getAbsolutePath().endsWith("txt")).map(Document::createFrom).filter(Document::isNotEmpty)
                     .collect(collectingAndThen(toList(), Documents::new));
 
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
         return null;
     }

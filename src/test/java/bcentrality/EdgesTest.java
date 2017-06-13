@@ -7,7 +7,6 @@ import org.junit.Test;
 import static java.util.Arrays.asList;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
 public class EdgesTest {
@@ -45,9 +44,9 @@ public class EdgesTest {
         when(edgeWithLowerCentralityValue.hasHigherCentralityValue(12.23)).thenReturn(false);
         when(anotherEdgeWithLowerCentralityValue.hasHigherCentralityValue(12.23)).thenReturn(false);
         Edges edges = new Edges(asList(edgeWithHigherCentralityValue, edgeWithLowerCentralityValue, anotherEdgeWithLowerCentralityValue));
-        Edges prunedEdges = edges.pruneWithCentralityValue(12.23);
-        assertThat(prunedEdges.size(), is(2));
-        assertThat(prunedEdges.getEdges(), Matchers.containsInAnyOrder(edgeWithLowerCentralityValue, anotherEdgeWithLowerCentralityValue));
+        edges = new Edges(edges.pruneWithCentralityValue(12.23));
+        assertThat(edges.size(), is(2));
+        assertThat(edges.getEdges(), Matchers.containsInAnyOrder(edgeWithLowerCentralityValue, anotherEdgeWithLowerCentralityValue));
 
     }
 

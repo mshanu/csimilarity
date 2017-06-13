@@ -1,10 +1,10 @@
 package bcentrality;
 
+import bcentrality.factory.NodeFactory;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -113,6 +113,24 @@ public class GraphTest {
 
         assertThat(decimalFormat.format(lastNode.getShortestDistanceFromSource()), is("41.4"));
         assertThat(lastNode.getNumberOfShortestPathFromSource(), is(3));
+    }
+
+    @Test
+    public void shouldReturnTheGraphWithCentralityCalculations() {
+        Node<String> a = NodeFactory.aNode("a");
+        Node<String> b = NodeFactory.aNode("b");
+        Node<String> c = NodeFactory.aNode("c");
+        Node<String> d = NodeFactory.aNode("d");
+        a.createEdge(b, 1.0);
+        b.createEdge(c, 1.0);
+        a.createEdge(d, 1.0);
+        d.createEdge(c, 1.0);
+        Graph graph = new Graph(new HashSet<>(asList(a, b, c,d)));
+        CentralityGraph centralityGraph = graph.calculateCentralityValue();
+        assertThat(centralityGraph.getNode(a).getCentralityValue(),is(1.0));
+        assertThat(centralityGraph.getNode(b).getCentralityValue(),is(1.0));
+        assertThat(centralityGraph.getNode(c).getCentralityValue(),is(1.0));
+        assertThat(centralityGraph.getNode(d).getCentralityValue(),is(1.0));
     }
 
 
