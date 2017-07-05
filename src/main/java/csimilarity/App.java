@@ -32,32 +32,34 @@ public class App {
         pairs.stream().forEach(pair -> documentGraphBuilder.addEdge(pair.getFromDocument(), pair.getToDocument(), 1 - pair.cosineSimilarity()));
         Graph graph = documentGraphBuilder.build();
         System.out.println("Build complete, Doing sparse");
-        Graph sparsedGraph = graph.sparse(0.6);
-        if (sparsedGraph.hasClusters()) {
-            throw new RuntimeException("Sparsed Graph has clusters");
-        }
-
-        System.out.println("Calculating centraliry");
-        CentralityGraph centralityGraph = sparsedGraph.calculateCentralityValue();
-        List<Graph> graphs = centralityGraph.removeEdgesWithHigherCentrality().getClusters();
+        Graph sparsedGraph = graph.sparse(0.5);
         final Integer[] i = {0};
-        graphs.forEach(eg -> {
-            try {
-                BufferedWriter writer = Files.newBufferedWriter(Paths.get("/Users/shanu/Projects/csimilarity/output.dot" + (++i[0])));
-                eg.toString(writer);
-                writer.close();
-            } catch (IOException e) {
-                throw new RuntimeException();
-            }
+        List<Graph> clusters = sparsedGraph.clusters();
+        System.out.println("Cluster size "+clusters.size());
+        clusters.forEach(cluster -> {
+            System.out.println("Calculating centraliry");
+            CentralityGraph centralityGraph = sparsedGraph.calculateCentralityValue();
+            List<Graph> graphs = centralityGraph.removeEdgesWithHigherCentrality().getClusters();
+            graphs.forEach(eg -> {
+                try {
+                    BufferedWriter writer = Files.newBufferedWriter(Paths.get("/Users/shanu/Projects/csimilarity/output.dot" + (++i[0])));
+                    eg.toString(writer);
+                    writer.close();
+                } catch (IOException e) {
+                    throw new RuntimeException();
+                }
+            });
         });
+
+
 
 
     }
 
 
     private static Documents getDocuments() {
-        try (final Stream<Path> pathStream = Files.walk(Paths.get("/Users/shanu/Downloads/Input"), FileVisitOption.FOLLOW_LINKS)) {
-            return pathStream.filter(path -> !path.toFile().isDirectory() && path.toAbsolutePath().toString().length() % 11 == 0 &&
+        try (final Stream<Path> pathStream = Files.walk(Paths.get("/Users/shanu/Downloads/TestDocuments"), FileVisitOption.FOLLOW_LINKS)) {
+            return pathStream.filter(path -> !path.toFile().isDirectory() &&
                     path.toFile().getAbsolutePath().endsWith("txt")).map(Document::createFrom).filter(Document::isNotEmpty)
                     .collect(collectingAndThen(toList(), Documents::new));
 

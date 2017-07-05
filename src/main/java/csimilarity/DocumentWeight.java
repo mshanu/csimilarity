@@ -1,9 +1,12 @@
 package csimilarity;
 
+import lombok.NoArgsConstructor;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+@NoArgsConstructor
 public class DocumentWeight {
     private
     Document document;

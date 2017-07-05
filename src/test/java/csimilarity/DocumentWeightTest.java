@@ -1,7 +1,9 @@
 package csimilarity;
 
+import bcentrality.factory.DocumentWeightFactory;
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.HashSet;
 
 import static java.util.Arrays.asList;
@@ -22,6 +24,15 @@ public class DocumentWeightTest {
         when(document.getWordCount("this")).thenReturn(2);
         DocumentWeight documentWeight = new DocumentWeight(document, allDocuments);
         assertThat(documentWeight.getTfIf("this"), is(3.12));
+
+    }
+
+    @Test
+    public void shouldReturnTheFingerPrintValueByMultiplyingOneDimensionalVectorWithTFIdVector() {
+        HashMap<String, Double> wordTfIf = new HashMap<>();
+        wordTfIf.put("hello", 234.00);
+        wordTfIf.put("world", 123.00);
+        DocumentWeight documentWeight = DocumentWeightFactory.aDocumentWeightWithTfIdfVector(wordTfIf);
 
     }
 

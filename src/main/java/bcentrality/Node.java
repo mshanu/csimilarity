@@ -90,10 +90,10 @@ public class Node<T> {
     @Override
     public String toString() {
         if (edges.isEmpty()) {
-            return getNameAndCentrality();
+            return dataNode.toString() + " "+centralityValue;
         }
         String template = "\"%s\" -> \"%s\" [label =\"%s\"];\n";
-        return edges.getEdges().stream().map(edge -> String.format(template, getNameAndCentrality(), edge.getToNode().getNameAndCentrality(), edge.getFormatattedWeight())).reduce(String::concat).get();
+        return edges.getEdges().stream().map(edge -> String.format(template, dataNode.toString()+" "+centralityValue, edge.getToNode().dataNode.toString()+" "+edge.getToNode().getCentralityValue(), edge.getFormatattedWeight())).reduce(String::concat).get();
 
     }
 
